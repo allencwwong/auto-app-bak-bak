@@ -27,7 +27,6 @@
 //= require theme/bootstrap-dropdownhover.min
 //= require theme/buttons
 //= require theme/skrollr.min
-//= require theme/main
 //= require theme/owl.carousel.min
 //= require theme/scrollReveal
 //= require theme/style-switcher

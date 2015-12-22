@@ -10,9 +10,23 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-
+ *
+ *= require theme/royal_preloader.css
+ *= require theme/settings.css
+ *= require theme/layers.css
+ *= require theme/navigation.css
+ *= require theme/bootstrap.min.css
+ *= require theme/style.css
+ *= require theme/bootstrap-social.css
+ *= require theme/animate.min.css
+ *= require theme/owl.carousel.css
+ *= require theme/jquery.snippet.css
+ *= require theme/buttons.css
+ *= require theme/style-switcher.css
+ *= require theme/blue.css
+ *= require theme/ionicons.min.css
+ *= require theme/font-awesome.css
+ *= require theme/magnific-popup.css
  *= require_tree .
  *= require_self
  */
-
-

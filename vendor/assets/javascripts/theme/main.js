@@ -81,15 +81,18 @@ $(function() {
 });
 
 //activate skrollr.js
-skrollr.init({
-    forceHeight: false,
-    smoothScrolling: true,
-    smoothScrollingDuration: 1500,
-        mobileCheck: function() {
-        //hack - forces mobile version to be off
-        return false;
-    }
-});
+$(function() {
+  //activate skrollr.js
+  skrollr.init({
+      forceHeight: false,
+      smoothScrolling: true,
+      smoothScrollingDuration: 1500,
+          mobileCheck: function() {
+          //hack - forces mobile version to be off
+          return false;
+      }
+  });
+})
 
 //carousel subnav slider
 $(document).ready(function() {
