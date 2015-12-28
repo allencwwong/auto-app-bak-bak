@@ -1,0 +1,29 @@
+
+#index{
+  @media (min-width: 450px) {
+    #map {
+      display: hidden;
+    }
+    #autos_list{
+      width:100%;
+      height:500px;
+      background: #aaa;
+      color:black;
+    }
+  }
+  @media (min-width: 960px) {
+    #map {
+      height: 500px;
+      width:65%;
+      background:black;
+      float:right;
+    }
+    #autos_list{
+      width:35%;
+      height:500px;
+      background: #aaa;
+      float:right;
+      color:black;
+    }
+  }
+}
