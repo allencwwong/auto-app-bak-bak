@@ -104,7 +104,7 @@ function initMap() {
   if (zip != null){
 
     $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + zip + '&key=AIzaSyBLNARwDERiG2brgTIZK0elZkmSc0dFCHM', function(data) {
-      console.log(data);
+
       window.map_center = {lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng};
 
       map = new google.maps.Map(document.getElementById('map'), {
@@ -120,18 +120,26 @@ function initMap() {
         }
       }); // end of map
 
-      var maker = new google.maps.Marker({
-        position: window.map_center,
-        map: map,
-        title: "hello world"
-      }); // marker
+      // var maker = new google.maps.Marker({
+      //   position: window.map_center,
+      //   map: map,
+      //   title: "hello world"
+      // }); // marker
+    }); // end of getJSON
 
+      // generate pin point for each car within radius area
+      // <% @listings.each do |listing| %>
+      // var my_zip = <%= listing.zip_code %>;
+
+      $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + my_zip + '&key=AIzaSyBLNARwDERiG2brgTIZK0elZkmSc0dFCHM', function(data) {
+        console.log(data)
         var maker = new google.maps.Marker({
-        position: {lat: 37.6,lng:-122.5},
+        position: {lat: data.results[0].geometry.location.lat,lng: data.results[0].geometry.location.lng},
         map: map,
-        title: "hello world"
+        title: <%= "#{listing.auto_maker}" %>
       }); // marker
-
+    }); // end getJSON
+      <% end %>
         // Create the DIV to hold the control and call the CenterControl() constructor
       // passing in this DIV.
       var centerControlDiv = document.createElement('div');
@@ -140,7 +148,6 @@ function initMap() {
       centerControlDiv.index = 1;
       map.controls[google.maps.ControlPosition.LEFT_TOP].push(centerControlDiv);
 
-    }); // end of getJSON
   } //  end of zip ! = null
   else {
       $.getJSON('http://freegeoip.net/json/', function(data){
