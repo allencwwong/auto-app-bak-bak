@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230023417) do
+ActiveRecord::Schema.define(version: 20151230031626) do
 
   create_table "auto_makers", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20151230023417) do
     t.string   "address",    limit: 255
     t.string   "state",      limit: 255
     t.string   "city",       limit: 255
-    t.integer  "lat",        limit: 4
-    t.integer  "lng",        limit: 4
+    t.float    "lat",        limit: 24
+    t.float    "lng",        limit: 24
   end
 
   create_table "roles", force: :cascade do |t|

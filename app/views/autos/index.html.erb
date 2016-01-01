@@ -2,7 +2,6 @@
 
 <div id="index" class="container-fluid">
 
-
   <div class="row">
     <div id="map"></div>
     <div id="autos_list">
@@ -91,16 +90,15 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 function initMap() {
+ 
 
-  var zip = prompt("Please enter your zip code","Enter zip");
+  $( document ).ready(function() {
+
+  var zip = prompt("Please enter your zip code","94112");
 
   while (zip == "") {
     var zip = prompt("Please enter your zip code","Enter zip");
   }
-
-
-  $( document ).ready(function() {
-
   if (zip != null){
 
     $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + zip + '&key=AIzaSyBLNARwDERiG2brgTIZK0elZkmSc0dFCHM', function(data) {
@@ -108,7 +106,7 @@ function initMap() {
       window.map_center = {lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng};
 
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 10,
         center: window.map_center,
 
         mapTypeControl: false,
@@ -120,26 +118,39 @@ function initMap() {
         }
       }); // end of map
 
-      // var maker = new google.maps.Marker({
-      //   position: window.map_center,
-      //   map: map,
-      //   title: "hello world"
-      // }); // marker
+      var all_titles = <%= raw @all_titles %> ;
+      console.log(all_titles);
+
+      var all_coordinates = <%= @all_coordinates %> ;
+      console.log(all_coordinates);
+       
+
+
+      for(var i=0; i < all_coordinates.length; i++) {
+      var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">' +all_titles[i] + '</h1>';
+       
+       var infowindow = new google.maps.InfoWindow({
+       content: contentString
+       });
+       
+      var latitude = all_coordinates[i][0];
+      var longitude = all_coordinates[i][1];
+
+      var marker = new google.maps.Marker({
+        position: {lat: latitude, lng: longitude},
+        map: map,
+        title: all_titles[i]
+      }); // marker
+      marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  }); // end of marker listener
+    } // end of for loop
     }); // end of getJSON
 
-      // generate pin point for each car within radius area
-      // <% @listings.each do |listing| %>
-      // var my_zip = <%= listing.zip_code %>;
-
-      $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + my_zip + '&key=AIzaSyBLNARwDERiG2brgTIZK0elZkmSc0dFCHM', function(data) {
-        console.log(data)
-        var maker = new google.maps.Marker({
-        position: {lat: data.results[0].geometry.location.lat,lng: data.results[0].geometry.location.lng},
-        map: map,
-        title: <%= "#{listing.auto_maker}" %>
-      }); // marker
-    }); // end getJSON
-      <% end %>
+   
         // Create the DIV to hold the control and call the CenterControl() constructor
       // passing in this DIV.
       var centerControlDiv = document.createElement('div');
