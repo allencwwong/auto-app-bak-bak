@@ -1,198 +1,153 @@
+<style type="text/css">
+  #map-canvas{
+    height:500px;
+    width:65%;
+    float:right;
+    clear:none;
+  }
+  #markers{
+    float:right;
+    width:35%;
+    clear:none;
+  }
+  .listingDetails h1{
+    font-size:14px;
+    margin:0px;
+    padding:0px;
+  }
+  .marker-link{
+    display:block;
+  }
+  .marker-link h1{
+   font-size:14px;
+    margin:2px;
+    padding:5px;
+    float:left;
+    clear:right;
+  }
+  .marker-link p{
+   font-size:12px;
+    margin:2px;
+    padding:5px;
+   display: inline;
+   float:left;
 
-
+  }
+  .marker-link img{
+    width: 100px;
+    float: left;
+  }
+</style>
 <div id="index" class="container-fluid">
 
   <div class="row">
-    <div id="map"></div>
-    <div id="autos_list">
-      <table class="table">
-        <th>Maker</th>
-        <th>Model</th>
-        <th>Zip Code</th>
-        <% @listings.each do |listing| %>
-        <tr>
-          <td><%=listing.auto_maker%></td>
-          <td><%=listing.auto_model%></td>
-          <td><%=listing.zip_code%></td>          
-        </tr>
-        <% end %>
-      </table>
-    </div>
 
+<div id="map-canvas"></div>
+<table id="markers" class="table table-hover">
+
+</table>
+
+ 
   </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLNARwDERiG2brgTIZK0elZkmSc0dFCHM&callback=initMap"
-async defer></script>
 
-<script type="text/javascript">
- var map;
- var icon_geo = 'assets/theme/projects/thumbs/geo_icon.jpg'
- function GeoLocation(controlDiv, map) {
-
-  // Set CSS for the control border.
-  var controlUI = document.createElement('div');
-  controlUI.style.backgroundColor = '#fff';
-  controlUI.style.border = '2px solid #fff';
-  controlUI.style.borderRadius = '3px';
-  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.marginBottom = '22px';
-  controlUI.style.marginLeft = '5px';
-  controlUI.style.textAlign = 'center';
-  controlUI.title = 'Click to recenter the map';
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior.
-  var controlText = document.createElement('div');
-  controlText.style.color = 'rgb(25,25,25)';
-  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-  controlText.style.fontSize = '16px';
-  controlText.style.lineHeight = '38px';
-  controlText.style.paddingLeft = '5px';
-  controlText.style.paddingRight = '5px';
-  controlText.innerHTML = 'Geo';
-  controlUI.appendChild(controlText);
-
-  // Setup the click event listeners: simply set the map to Chicago.
-  controlUI.addEventListener('click', function() {
-    var infoWindow = new google.maps.InfoWindow({map: map});
-
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-
-});
-
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-    'Error: The Geolocation service failed.' :
-    'Error: Your browser doesn\'t support geolocation.');
-}
-
-
-function initMap() {
- 
-
-  $( document ).ready(function() {
-
-  var zip = prompt("Please enter your zip code","94112");
-
-  while (zip == "") {
-    var zip = prompt("Please enter your zip code","Enter zip");
-  }
-  if (zip != null){
-
-    $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + zip + '&key=AIzaSyBLNARwDERiG2brgTIZK0elZkmSc0dFCHM', function(data) {
-
-      window.map_center = {lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng};
-
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: window.map_center,
-
-        mapTypeControl: false,
-
-
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP
-        }
-      }); // end of map
-
-      var all_titles = <%= raw @all_titles %> ;
-      console.log(all_titles);
-
-      var all_coordinates = <%= @all_coordinates %> ;
-      console.log(all_coordinates);
-       
-
-
-      for(var i=0; i < all_coordinates.length; i++) {
-      var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' +all_titles[i] + '</h1>';
-       
-       var infowindow = new google.maps.InfoWindow({
-       content: contentString
-       });
-       
-      var latitude = all_coordinates[i][0];
-      var longitude = all_coordinates[i][1];
-
-      var marker = new google.maps.Marker({
-        position: {lat: latitude, lng: longitude},
-        map: map,
-        title: all_titles[i]
-      }); // marker
-      marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  }); // end of marker listener
-    } // end of for loop
-    }); // end of getJSON
 
    
-        // Create the DIV to hold the control and call the CenterControl() constructor
-      // passing in this DIV.
-      var centerControlDiv = document.createElement('div');
-      var centerControl = new GeoLocation(centerControlDiv, map);
 
-      centerControlDiv.index = 1;
-      map.controls[google.maps.ControlPosition.LEFT_TOP].push(centerControlDiv);
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-  } //  end of zip ! = null
-  else {
-      $.getJSON('http://freegeoip.net/json/', function(data){
-      window.map_center = {lat: data.latitude, lng: data.longitude};
+<script type="text/javascript">
+function initialize() {
 
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
-        center: window.map_center,
+    var markers = new Array();
 
-        mapTypeControl: false,
+    var mapOptions = {
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(1, 1)
+    };
+
+    // var locations = [
+    //     [new google.maps.LatLng(0, 0), 'Marker 1', 'Infowindow content for Marker 1'],
+    //     [new google.maps.LatLng(0, 1), 'Marker 2', 'Infowindow content for Marker 2'],
+    //     [new google.maps.LatLng(0, 2), 'Marker 3', 'Infowindow content for Marker 3'],
+    //     [new google.maps.LatLng(1, 0), 'Marker 4', 'Infowindow content for Marker 4'],
+    //     [new google.maps.LatLng(1, 1), 'Marker 5', 'Infowindow content for Marker 5'],
+    //     [new google.maps.LatLng(1, 2), 'Marker 6', 'Infowindow content for Marker 6']
+    // ];
+
+    //  console.log(locations[0][0]);
+    //  console.log(locations[0][1]);
+    //  console.log(locations[0][2]);
+
+    var locations = [];
+    
+    // var listingLatLng = <%= @alisting_coordinates %>;
+    var listingTitles = <%= raw @listing_titles %>;
+    //var lisintgDetails = <%= raw @listing_titles %>;
+
+    // console.log(allLatLng);
+    var lat = <%= @listing_lat %>;
+    var lng = <%= @listing_lng %>;
+
+    var listing_photos_url = <%= raw @listing_photos_url %>;
+    var listing_zip = <%= raw @listing_details %>;
+    //console.log(listing_photos_url);
+
+    for(var i = 0; i < listingTitles.length; i++){
+    
+    var displayListingTitle = "<img src='" + listing_photos_url[i] + "'><h1>" + listingTitles[i] + "</h1><br><p>" + listing_zip[i] + "</p>";
+      
+    var displaylistingDetail = "<a class='listingDetails' href='#'><h1>" + listingTitles[i] + "</h1></a>";  
+
+    locations[i] = [new google.maps.LatLng({lat:lat[i],lng:lng[i]}), displayListingTitle , displaylistingDetail]; 
+    }
 
 
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP
-        }
-      }); // end of map
+ // ############ CREATE MARKER ###############  
 
-      var maker = new google.maps.Marker({
-        position: window.map_center,
-        map: map,
-        title: "hello world"
-      }); // marker
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-        // Create the DIV to hold the control and call the CenterControl() constructor
-      // passing in this DIV.
-      var centerControlDiv = document.createElement('div');
-      var centerControl = new GeoLocation(centerControlDiv, map);
+    var infowindow = new google.maps.InfoWindow();
 
-      centerControlDiv.index = 1;
-      map.controls[google.maps.ControlPosition.LEFT_TOP].push(centerControlDiv);
-    }); // end of getJSON
-  }
-}); // end of jquery ready
-  
-} // end of init map
+    for (var i = 0; i < locations.length; i++) {
+
+        // Append a link to the markers DIV for each marker
+        $('#markers').append('<tr><td><a class="marker-link" data-markerid="' + i + '" href="#">' + locations[i][1] + '</a></td></tr> ');
+
+
+        var marker = new google.maps.Marker({
+            position: locations[i][0],
+            center: locations[i][0],
+            map: map,
+            title: locations[i][1],
+        });
+
+
+        // Register a click event listener on the marker to display the corresponding infowindow content
+        google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+
+            return function () {
+                infowindow.setContent(locations[i][2]);
+                infowindow.open(map, marker);
+                console.log("clicked marker")
+            }
+
+        })(marker, i));
+
+        // Add marker to markers array
+        markers.push(marker);
+    }
+
+    // Trigger a click event on each marker when the corresponding marker link is clicked
+    $('.marker-link').on('mouseover', function () {
+
+        google.maps.event.trigger(markers[$(this).data('markerid')], 'mouseover');
+        console.log("clicked")
+    });
+}
+
+initialize();  
+
 </script>

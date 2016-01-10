@@ -40,7 +40,12 @@
 //= require theme/revolution.extension.navigation.min
 //= require theme/revolution.extension.parallax.min
 //= require theme/main
+//= require theme/angular
+//= require theme/angular-animate
+//= require theme/ui-bootstrap-tpls-0.14.3
 //= require_tree .
+
+
 
 
 

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dotenv'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'thematic'
 gem 'rspec'
 gem 'unirest'
