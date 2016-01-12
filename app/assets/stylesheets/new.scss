@@ -1,129 +1,215 @@
 #new{
+
+
   
   .jumbotron{
     background:#333333 url(http://www.wallpaperfoy.com/wp-content/uploads/2015/12/1920x1080-Wallpaper-cars-HD-D74.jpg) no-repeat;
     background-size: 100%;
     height:768px;
   }  
-  .main-search{
 
-    height:350px;
-    background: #000;
-    border:none;
-    background-color:rgba(0, 0, 0, 0.8);
-    color:#fff;
-  }
-
-  .main-search-tab{
-    
-    width:auto;
-    height:auto;
-    color:#fff;
-
-
-  }
-
-  .main-search-tab li{
-    background:black;
-    height:100%;
-    padding:0px;
-    margin:0px;
-  }
   .tab-content{
-    padding:0px;
-    margin:0px;
-  }
-  .search-details{
-    width:100%;
-    background:blue;
-    padding:15px 30px 15px 30px;
-  }
-
-  .main-search .nav-tabs{
-    width:20%;
-    border:none;
-
-  }
-
-  .main-search .tab-content{
-    background-color:green;
-    width:80%;
     height:100%;
-    float:right;
-    border:none;
+    background:#aaa;
+    padding:0px;
+    margin:0px; 
   }
 
-/* custom inclusion of right, left and below tabs */
+  .tab-content .tab-content{
+    background: #333;
+    margin:0px;
+    padding:0px;
+    height:400px;
+  }
+
+  .searchAutoDetials{
+    background:blue;
+    width:calc(100% - 150px);
+    margin-left:150px;
+    height:400px;
+  }
+  .searchMain{
+    width:70%;
+    float:left;
+    background:teal;
+    margin:0px;
+    padding:0px;
+    list-style: none;
+  }
+
+  .searchMain-full{
+    width:calc(100% - 150px);
+    float:left;
+    background:teal;
+    margin:0 0 0 150px;
+    padding:0px;
+    list-style: none;
+  }
+  
+  .searchMain li{
+    float:left;
+    width: 150px;
+    height: 180px;
+    margin:5px 10px 5px 5px;
+  }
+
+  .searchDesc{
+    width:30%;
+    float:right;
+    background:pink;
+    margin:0px;
+    padding:0px;
+    height:100%;
+  }
+
+  .searchContent-year{
+    margin:0px;
+    padding:0px;
+    float:left;
+    list-style: none;
+  }
+
+  .searchContent-year li{
+    float:left;
+    width:50px;
+    margin:3px;
+    padding:0px;
+    font-size:22px;
+  }
 
 
-.tabs-left > .nav-tabs {
+/* custom inclusion of angular left tab css below */
+
+
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs {
   border-bottom: 0;
 }
+ 
 
-.tab-content > .tab-pane,
-.pill-content > .pill-pane {
-  display: none;
-}
-
+ 
 .tab-content > .active,
 .pill-content > .active {
   display: block;
 }
-
-
-.tabs-below > .nav-tabs > li {
-  margin-top: -1px;
-  margin-bottom: 0;
-}
-
-.tabs-below > .nav-tabs > li > a {
-  -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
-}
-
-
-.tabs-below > .nav-tabs > .active > a,
-.tabs-below > .nav-tabs > .active > a:hover,
-.tabs-below > .nav-tabs > .active > a:focus {
-  border-color: transparent #ddd #ddd #ddd;
-}
-
-.tabs-left > .nav-tabs > li,
-.tabs-right > .nav-tabs > li {
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs > li {
   float: none;
 }
-
-.tabs-left > .nav-tabs > li > a,
-.tabs-right > .nav-tabs > li > a {
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs > li > a {
   min-width: 150px;
-  margin-right: 0;
+  margin-right: 0px;
   margin-bottom: 3px;
+  background:red;
 }
-
-.tabs-left > .nav-tabs {
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs {
   float: left;
+  margin-right: 0px;
   border-right: 1px solid #ddd;
 }
-
-.tabs-left > .nav-tabs > li > a {
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs > li > a {
   margin-right: -1px;
   -webkit-border-radius: 4px 0 0 4px;
      -moz-border-radius: 4px 0 0 4px;
           border-radius: 4px 0 0 4px;
 }
-
-.tabs-left > .nav-tabs > li > a:hover,
-.tabs-left > .nav-tabs > li > a:focus {
-  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs > li > a:hover,
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs > li > a:focus {
+ // border-color: #eeeeee #dddddd #eeeeee #eeeeee;
 }
-
-.tabs-left > .nav-tabs .active > a,
-.tabs-left > .nav-tabs .active > a:hover,
-.tabs-left > .nav-tabs .active > a:focus {
+ 
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs .active > a,
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs .active > a:hover,
+.ng-isolate-scope .ng-isolate-scope > .nav-tabs .active > a:focus {
+  // border-color: #ddd transparent #ddd #ddd;
+  // border-right-color: #ffffff;
+}
+ 
+.ng-isolate-scope .ng-isolate-scope > .tab-content > .tab-pane .active {
   border-color: #ddd transparent #ddd #ddd;
-  *border-right-color: #ffffff;
+  border-left-color: #ffffff;
+ 
 }
+ 
+.ng-isolate-scope .ng-isolate-scope > .tab-content > .tab-pane > .tab-text {
+  padding-top: 10px;
+}
+
+/* custom inclusion of right, left and below tabs */
+
+
+// .tabs-left > .nav-tabs {
+//   border-bottom: 0;
+// }
+
+// .tab-content > .tab-pane,
+// .pill-content > .pill-pane {
+//   display: none;
+// }
+
+// .tab-content > .active,
+// .pill-content > .active {
+//   display: block;
+// }
+
+
+// .tabs-below > .nav-tabs > li {
+//   margin-top: -1px;
+//   margin-bottom: 0;
+// }
+
+// .tabs-below > .nav-tabs > li > a {
+//   -webkit-border-radius: 0 0 4px 4px;
+//      -moz-border-radius: 0 0 4px 4px;
+//           border-radius: 0 0 4px 4px;
+// }
+
+
+// .tabs-below > .nav-tabs > .active > a,
+// .tabs-below > .nav-tabs > .active > a:hover,
+// .tabs-below > .nav-tabs > .active > a:focus {
+//   border-color: transparent #ddd #ddd #ddd;
+// }
+
+// .tabs-left > .nav-tabs > li,
+// .tabs-right > .nav-tabs > li {
+//   float: none;
+// }
+
+// .tabs-left > .nav-tabs > li > a,
+// .tabs-right > .nav-tabs > li > a {
+//   min-width: 150px;
+//   margin-right: 0;
+//   margin-bottom: 3px;
+// }
+
+// .tabs-left > .nav-tabs {
+//   float: left;
+//   border-right: 1px solid #ddd;
+// }
+
+// .tabs-left > .nav-tabs > li > a {
+//   margin-right: -1px;
+//   -webkit-border-radius: 4px 0 0 4px;
+//      -moz-border-radius: 4px 0 0 4px;
+//           border-radius: 4px 0 0 4px;
+// }
+
+// .tabs-left > .nav-tabs > li > a:hover,
+// .tabs-left > .nav-tabs > li > a:focus {
+//   border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+// }
+
+// .tabs-left > .nav-tabs .active > a,
+// .tabs-left > .nav-tabs .active > a:hover,
+// .tabs-left > .nav-tabs .active > a:focus {
+//   border-color: #ddd transparent #ddd #ddd;
+//   *border-right-color: #ffffff;
+// }
 
 
 

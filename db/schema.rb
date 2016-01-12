@@ -11,19 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104092403) do
+ActiveRecord::Schema.define(version: 20160112041406) do
 
   create_table "auto_makers", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "logo",        limit: 255
+    t.text     "description", limit: 65535
   end
 
   create_table "auto_models", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.integer  "auto_maker_id", limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "description",   limit: 65535
   end
 
   create_table "autos", force: :cascade do |t|

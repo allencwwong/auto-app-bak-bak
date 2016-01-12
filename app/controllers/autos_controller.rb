@@ -45,7 +45,7 @@ class AutosController < ApplicationController
   def new 
     @auto_maker_names = []
 
-    @auto_makes = AutoMaker.all
+    @auto_makers = AutoMaker.all
     @auto_makers.each do |make|
       @auto_maker_names << make.name
     end

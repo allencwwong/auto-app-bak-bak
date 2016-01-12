@@ -10,16 +10,40 @@
       });
     }
 
-    <%= @cars.car_maker %>
 
-    $scope.tests = ["test1","test2","test3"];
+      $scope.makeDescription = "Select a Make";
+      $scope.modelDescription = "Select a Model";
+      
+      $scope.tabUnlock = function(make){
+        console.log(make);
+        $scope.modelNames = [];
+        $scope.autoYears = [];
 
-     $scope.tabs = [
-    { title:'Dynamic Title 1', content: "test"},
-    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true },
-    {title:'tab3', content: 'tab 3'}
-  ];
+        for(var i = 0; i < $scope.autoMakers.length; i++){
+            var mymake = $scope.autoMakers[i];
+            if(mymake.make_name === make){
+              console.log(mymake.auto_details.auto_models);
+              $scope.makeDescription = mymake.make_description;
+              console.log($scope.makesDescription);
+              $scope.models = mymake.auto_details.auto_models;
+              for(var j = 0; j < $scope.models.length; j++){
+                 $scope.modelNames[j] = $scope.models[j].model_name; 
+                  console.log($scope.modelNames);
+              }
+            }
+        }
+        var currentYear = new Date().getFullYear();
+        
+        console.log(currentYear);
+        
+        for(var i = 1980;i < currentYear; i++){
+          $scope.autoYears[i-1980] = i;
+        }
 
+        console.log($scope.autoYears);
+      }
+
+       
 
 
     window.$scope = $scope;

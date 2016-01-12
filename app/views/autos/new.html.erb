@@ -1,88 +1,63 @@
 
-<style>
-.tabContent{
-float:left;
-}
-
-.tabDesc{
-float:left;
-}
-</style>
-<div id="new" class="container-fluid ">
-
+<div id="new" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
   <div class="row jumbotron">
-
-
-  <div class="container" ng-controller="mainSearchCtrl" ng-init="setup()">
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs main-search-tab" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Search All Cars</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Search Dealers Only</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Search Personal Only</a></li>
-  </ul>  
-
-  <!-- Tab panes -->
-  <div class="tab-content main-search">
-  <!-- tab 1 -->
-    <div role="tabpanel" class="tab-pane fade in active" id="home">
-         <div class="search-details">Search All Cars for </div>
-    </div>
-             <!-- tabs left -->
-<!--       <div class="tabbable tabs-left">
-        <ul class="nav nav-tabs">
-          <li><a href="#a" data-toggle="tab">Select Any Make</a></li>
-          <li class="active"><a href="#b" data-toggle="tab">Select Any Model</a></li>
-          <li><a href="#c" data-toggle="tab">Select Any Year</a></li>
-        </ul>
-        <div class="tab-content">
-         <div class="tab-pane active" id="a" ng-repeat="autoMaker in autoMakers track by $index">{{autoMaker.name}}</div>
-         <div class="tab-pane" id="b">list all models in selected makers</div>
-         <div class="tab-pane" id="c">list all available year inside selected makers and models</div>
-        </div>
-      </div> -->
-    <!-- uib tabset -->
-       <uib-tabset>
+    <uib-tabset>
     
-          <uib-tab ng-repeat="tab in tabs"  heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-            <div class="tabContent">
-            <p ng-repeat="autoMaker in autoMakers">{{autoMaker.name}}</p>
+      <uib-tab heading="Vertical 1" active="true">
+        <div>Search All Cars in {zip} by {maker} {model} {year}</div>
+        
+        <uib-tabset vertical="true">
+
+          <uib-tab heading="inside 1" class="tab-header" >
+            <div class="tab-content-inner">
+              <div class="searchAutoDetials">  
+                 <ul class="searchMain"> 
+                    <li ng-repeat="autoMaker in autoMakers">
+                      <a href="#" ng-click="tabUnlock(autoMaker.make_name)"><img src="{{autoMaker.logo}}" width="150px"></a>
+                      <a href="#" ng-click="tabUnlock(autoMaker.make_name)">{{autoMaker.make_name}}</a></li>
+                 </ul>  
+                 <div class="searchDesc">
+                    <p>{{makeDescription}}</p>
+                 </div>
+              </div> 
             </div>
-            <div class="tabDesc">test</div>
           </uib-tab>
-         
-        </uib-tabset>
-    <!-- /uib tabset -->
+          
+          <uib-tab heading="inside 2" class="tab-header">
+            <div class="searchAutoDetials">  
+            
+              <ul class="searchMain">
+                <li ng-repeat="modelName in modelNames">{{modelName}}</li>
+              </ul>  
+              
+              <div class="searchDesc">
+                    <p>{{modelDescription}}</p>
+              </div>          
+            
+            </div>
+          </uib-tab>  
 
-      <!-- /tabs -->
-      </div> <!-- end of first tab -->  
-  <!-- tab 2 -->  
-    <div role="tabpanel" class="tab-pane fade" id="profile">
-    <div class="search-details">Search Dealers Only</div>
-    </div>
-  <!-- tab 3 -->  
-    <div role="tabpanel" class="tab-pane fade" id="messages">
-    <div class="search-details">Search Personal Only</div>
-    </div>
+          <uib-tab heading="inside 3" class="tab-header">
+            <div class="searchAutoDetials">
+              <ul class="searchContent-year">
+                <li ng-repeat="autoYear in autoYears" class="searchContent-year"><a href="#">{{autoYear}}</a></li>
+              </ul>
+            </div>
+          </uib-tab>   
 
+       
+        </uib-tabset> <!-- end of inner tabset -->
+      </uib-tab> <!-- end of first outter tab --> 
 
-  </div> <!-- end of tab panes -->
-</div>
-
-</div> <!-- end of jumbotron -->
-</div> <!-- end of new -->
+      <uib-tab heading="Vertical 2" >
+        Vertical content 2
+      </uib-tab>
+    </uib-tabset>
+  </div> <!-- end of jumbo -->
+</div> <!-- end of container -->
 
 
 <script type="text/javascript">
-// $('#myTabs a').click(function (e) {
-//   e.preventDefault()
-//   $(this).tab('show')
-// })
-
-// $('#myTabs a[href="#profile"]').tab('show') 
-// Select tab by name
-// $('#myTabs a:first').tab('show') // Select first tab
-// $('#myTabs a:last').tab('show') // Select last tab
-// $('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)  
 
 </script>
 
