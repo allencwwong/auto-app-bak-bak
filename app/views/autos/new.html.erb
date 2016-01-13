@@ -1,33 +1,42 @@
 
+<style>
+  .selected{
+    background:yellow;
+  }
+</style>
+
 <div id="new" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
   <div class="row jumbotron">
     <uib-tabset>
     
       <uib-tab heading="Vertical 1" active="true">
-        <div>Search All Cars in {zip} by {maker} {model} {year}</div>
+        <div>Search All Cars make by <span ng-repeat="autoSearch in autoSearches">{{autoSearch}} </span> model {model} from {year}</div>
         
         <uib-tabset vertical="true">
 
           <uib-tab heading="inside 1" class="tab-header" >
-            <div class="tab-content-inner">
-              <div class="searchAutoDetials">  
+
+              <div class="tab-content-inner">  
                  <ul class="searchMain"> 
-                    <li ng-repeat="autoMaker in autoMakers">
-                      <a href="#" ng-click="tabUnlock(autoMaker.make_name)"><img src="{{autoMaker.logo}}" width="150px"></a>
-                      <a href="#" ng-click="tabUnlock(autoMaker.make_name)">{{autoMaker.make_name}}</a></li>
+                    <li ng-repeat="autoMaker in autoMakers track by $index">
+                      <div class="autoMakeSet" ng-click="tabUnlock(autoMaker.make_name,$index)" ng-class="">
+                        <a href="#"><img src="{{autoMaker.logo}}" width="150px"></a>
+                        <a href="#">{{autoMaker.make_name}}</a>
+                      </div>  
+                    </li>
                  </ul>  
                  <div class="searchDesc">
                     <p>{{makeDescription}}</p>
                  </div>
               </div> 
-            </div>
+
           </uib-tab>
           
           <uib-tab heading="inside 2" class="tab-header">
-            <div class="searchAutoDetials">  
+            <div class="tab-content-inner">  
             
               <ul class="searchMain">
-                <li ng-repeat="modelName in modelNames">{{modelName}}</li>
+                <li ng-repeat="modelName in modelNames track by $index"><a href="#" ng-click="tabUnlock2(modelName,$index)">{{modelName}}</a></li>
               </ul>  
               
               <div class="searchDesc">
@@ -38,7 +47,7 @@
           </uib-tab>  
 
           <uib-tab heading="inside 3" class="tab-header">
-            <div class="searchAutoDetials">
+            <div class="tab-content-inner">
               <ul class="searchContent-year">
                 <li ng-repeat="autoYear in autoYears" class="searchContent-year"><a href="#">{{autoYear}}</a></li>
               </ul>

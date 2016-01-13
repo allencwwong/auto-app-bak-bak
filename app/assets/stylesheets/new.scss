@@ -22,7 +22,7 @@
     height:400px;
   }
 
-  .searchAutoDetials{
+  .tab-content-inner{
     background:blue;
     width:calc(100% - 150px);
     margin-left:150px;
@@ -76,6 +76,13 @@
     padding:0px;
     font-size:22px;
   }
+
+  .autoMakeSet{
+    margin:0px;
+    padding:0px;
+  }
+
+
 
 
 /* custom inclusion of angular left tab css below */
