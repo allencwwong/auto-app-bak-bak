@@ -264,17 +264,13 @@
                             </ul>
                           </li>
                       <li class="dropdown dropdown-main">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Up<span class="fa fa-angle-down dropdown-arrow"></span></a>
+                            <%= link_to "Sign In","http://localhost:3000/users/sign_in" %>
                             <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn"><!-- Control Animations by changing "fadeIn" to another property from animate.css, check animations page in features / ALSO dropdown-animation class controls the duration, ajust if need -->
-                                <li><a href="blog-posts-sidebar-right.html">Sidebar Right</a></li>
-                                <li><a href="blog-posts-sidebar-left.html">Sidebar Left</a></li>
-                                <li><a href="blog-posts-fullwidth.html">Full Width</a></li>
-                                <li><a href="blog-posts-grid.html">Grid</a></li>
-                                <li><a href="blog-single-post.html">Single Post</a></li>
+                                <li><%= link_to "Sign Out","users/sign_out", method: :delete %></li>
                             </ul>
                           </li>
                       <li class="dropdown dropdown-main">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register<span class="fa fa-angle-down dropdown-arrow"></span></a>
+                            <%= link_to "Register","http://localhost:3000/users/sign_up" %>
                             <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn"><!-- Control Animations by changing "fadeIn" to another property from animate.css, check animations page in features / ALSO dropdown-animation class controls the duration, ajust if need -->
                                 <li><a href="blog-posts-sidebar-right.html">Sidebar Right</a></li>
                                 <li><a href="blog-posts-sidebar-left.html">Sidebar Left</a></li>

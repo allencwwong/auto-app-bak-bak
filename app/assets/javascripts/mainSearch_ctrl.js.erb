@@ -10,59 +10,98 @@
       });
     }
 
-
       $scope.makeDescription = "Select a Make";
       $scope.modelDescription = "Select a Model";
-      $scope.autoSearches = {}; 
-      $scope.autoSearchesIndex = [];
+      $scope.searchDetails = []; 
+      $scope.modelNames = [];
 
-      $scope.tabUnlock = function(make,index){
-        // console.log(make);
-        $scope.modelNames = [];
-        $scope.autoYears = [];
-        for(var i = 0; i < $scope.autoMakers.length; i++){
-            var mymake = $scope.autoMakers[i];
-            if(mymake.make_name === make){
-            
-            if($scope.autoSearchesIndex.indexOf(index) === -1){
-              $scope.autoSearches.make = make; 
-              $scope.autoSearchesIndex.push(index);
-            }  else {
-              var myIndex = $scope.autoSearchesIndex.indexOf(index);
-              $scope.autoSearches.splice(myIndex, 1);
-              $scope.autoSearchesIndex.splice(myIndex,1); 
+      function return_index_of_car_make(car_make,car_array){
+        if(car_array.length < 1){
+          console.log("the array is empty")
+          return null;
+        } 
+        else {
+          for(var i = 0;i < car_array.length;i++ ){
+            if(car_make === car_array[i].make){
+              return i;
+              console.log("index return")
             }
-              // console.log(mymake.auto_details.auto_models);
-              console.log($scope.autoSearches);
+          }
+          
+          return null;
+        }
+      }
 
-              
-              $scope.makeDescription = mymake.make_description;
-              // console.log($scope.makesDescription);
-              $scope.models = mymake.auto_details.auto_models;
-              for(var j = 0; j < $scope.models.length; j++){
-                 $scope.modelNames.push($scope.models[j].model_name); 
-                  // console.log($scope.modelNames);
+      function add_new_car(car_make,car_array){
+        if(return_index_of_car_make(car_make,car_array) || return_index_of_car_make(car_make,car_array) == 0){
+          return 0;
+        } 
+        else {
+            console.log("the array was empty but now adding stuff")
+            car_array.push({
+            make: car_make,
+            model: null,
+            year: null
+          });
+            // console.log(car_array);
+        }
+      }
+
+      function delete_existing_car(car_make,car_array){
+        car_array.splice(return_index_of_car_make(car_make,car_array),1);
+        console.log("delete car")
+      }
+
+      function show_car_models(car_array){
+        //loop thru $scope.searchDetails for make 
+        for(var i = 0; i < $scope.car_array.length; i++){
+            var autoMakers = $scope.autoMakers[i]; // acura 
+            var modelList = autoMakers.auto_details.auto_models; // tsx , mdx
+        //base on the make loop thru models and post models 
+          for(var j = 0;j < $scope.car_array.length;j++){
+            if($scope.car_array[j].make === autoMakers.make_name){  // [0]acura/ [0].make true
+              for(var k = 0; k < modelList.length; k++){
+                $scope.modelNames.push(modelList[k].model_name); // store
+
               }
             }
+          }
         }
-        var currentYear = new Date().getFullYear();
-        
-        // console.log(currentYear);
-        
-        for(var i = 1980;i < currentYear; i++){
-          $scope.autoYears[i-1980] = i;
-        }
-
-        // console.log($scope.autoYears);
-        
       }
 
-      $scope.tabUnlock2 = function(model,index){
-        console.log(model);
-        console.log(index);
+      function delete_car_models(car_array){
+
       }
+
+
+      $scope.tabUnlock = function(make){
+       if (add_new_car(make, $scope.searchDetails) === 0){
+          delete_existing_car(make,$scope.searchDetails);
+       }
+       else{
+          add_new_car(make, $scope.searchDetails);
+          show_car_models($scope.searchDetails);
+          console.log($scope.searchDetails);
+          console.log($scope.modelNames);
+       }
+
+
+      
+        // for(var i = 0; i < $scope.autoMakers.length; i++){
+        //     var mymake = $scope.autoMakers[i];
+        //     // if(mymake.make_name === make){
+                          
+        //     //   $scope.makeDescription = mymake.make_description;
+        //     //   // console.log($scope.makesDescription);
+        //     //   $scope.models = mymake.auto_details.auto_models;
+        //     //   // for(var j = 0; j < $scope.models.length; j++){
+        //     //   //    $scope.modelNames.push($scope.models[j].model_name); 
+        //     //   //     // console.log($scope.modelNames);
+        //     //   // }
+        //     // }
+        //   }
+        }       
        
-
 
     window.$scope = $scope;
   

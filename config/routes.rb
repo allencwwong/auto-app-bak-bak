@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'autos#index'
   resources :autos
+  resources :admins
+
 
   namespace :api do
     namespace :v1 do
