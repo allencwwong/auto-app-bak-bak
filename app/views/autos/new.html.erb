@@ -19,7 +19,7 @@
               <div class="tab-content-inner">  
                  <ul class="searchMain"> 
                     <li ng-repeat="autoMaker in autoMakers track by $index">
-                      <div class="autoMakeSet" ng-click="tabUnlock(autoMaker.make_name)" ng-class="">
+                      <div class="autoMakeSet" ng-click="addMakesToSearch(autoMaker.make_name)" ng-class="">
                         <a href="#"><img src="{{autoMaker.logo}}" width="150px"></a>
                         <a href="#">{{autoMaker.make_name}}</a>
                       </div>  
@@ -36,7 +36,7 @@
             <div class="tab-content-inner">  
             
               <ul class="searchMain">
-                <li ng-repeat="modelName in modelNames track by $index"><a href="#" ng-click="tabUnlock2(modelName)">{{modelName}}</a></li>
+                <li ng-repeat="modelName in modelNames track by $index"><a href="#" ng-click="addModelsToSearch(modelName)">{{modelName}}</a></li>
               </ul>  
               
               <div class="searchDesc">
@@ -49,7 +49,7 @@
           <uib-tab heading="inside 3" class="tab-header">
             <div class="tab-content-inner">
               <ul class="searchContent-year">
-                <li ng-repeat="autoYear in autoYears" class="searchContent-year"><a href="#"></a></li>
+                <li ng-repeat="autoYear in autoYearList" class="searchContent-year"><a href="#">{{autoYear}}</a></li>
               </ul>
             </div>
           </uib-tab>   
