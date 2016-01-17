@@ -43,6 +43,10 @@ class AutosController < ApplicationController
   end #end of index
 
   def new 
+    @listing = Auto.new
+  end
+
+  def home 
     @auto_maker_names = []
 
     @auto_makers = AutoMaker.all
@@ -50,10 +54,13 @@ class AutosController < ApplicationController
       @auto_maker_names << make.name
     end
   end
+
+  def show
+    @listing = Listing.find(params[:id])
+  end
   
   def make_model_association
     @makes = CarMaker.all
-
   end
 
 

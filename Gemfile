@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'thematic'
 gem 'rspec'

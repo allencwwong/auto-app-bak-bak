@@ -19,6 +19,7 @@
       $scope.makeNames = []; 
       $scope.modelNames = [];
       $scope.autoYearList = [];
+      $scope.searchYears = [];
 
       // Get unique function //
       var unique = function(xs) {
@@ -88,7 +89,7 @@
             car_array.push({
             make: car_make,
             model: [],
-            year: null
+            year: []
           });
             // console.log(car_array);
         }
@@ -266,12 +267,24 @@
         }
       }
 
-      function show_car_years(start_year){
-        var current_year = new Date().getFullYear();
-        for(var i=start_year;i < current_year;i++){
-          $scope.autoYearList.push(i);
+      function show_car_years(start_year,selected){
+        if(selected){
+          var current_year = new Date().getFullYear();
+            for(var i=start_year;i < current_year;i++){
+            $scope.autoYearList.push(i);
+            }
+            console.log("show years!");
+          }
+          else{
+            console.log("empty");
+            $scope.autoYearList = [];
+            $scope.autoYearList[0] = "Please Select a Make."
+          }
         }
-      }
+
+      function add_new_year(car_year,car_array){
+        car_array
+      }  
 
 
       $scope.addMakesToSearch = function(make){
@@ -287,6 +300,13 @@
           console.log($scope.modelNames);
        }
           show_make_description(make);
+        if($scope.searchDetails == 0){
+          show_car_years("",false);
+        } 
+        else{ 
+          show_car_years(1980,true);
+          console.log("not empty")
+        }
       } 
 
       $scope.addModelsToSearch = function(model){
@@ -298,9 +318,23 @@
           add_new_model(model,$scope.searchDetails);
           console.log("added search model");
         }
-      }      
+      }
+
       
-      show_car_years(1980);
+      $scope.addYearToSearch = function(year){
+        
+        //store all selected year in an array
+        var getYearIndex = $scope.searchYears.indexOf(year);
+        if(getYearIndex === -1){
+          $scope.searchYears.push(year);  
+        }
+        else{
+          $scope.searchYears.splice(getYearIndex,1);
+        }
+      console.log($scope.searchYears);
+      }      
+    
+
 
     window.$scope = $scope;
   

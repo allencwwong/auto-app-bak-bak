@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'autos#index'
+  get '/autos/home', to: 'autos#home'
   resources :autos
-  resources :admins
+
+  namespace :admin do
+    resources :admins
+  end
 
 
   namespace :api do

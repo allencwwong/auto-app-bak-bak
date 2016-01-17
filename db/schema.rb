@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113065005) do
+ActiveRecord::Schema.define(version: 20160116082316) do
 
   create_table "auto_makers", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -58,16 +58,34 @@ ActiveRecord::Schema.define(version: 20160113065005) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string   "auto_maker", limit: 255
-    t.string   "auto_model", limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "zip_code",   limit: 255
-    t.string   "address",    limit: 255
-    t.string   "state",      limit: 255
-    t.string   "city",       limit: 255
-    t.float    "lat",        limit: 24
-    t.float    "lng",        limit: 24
+    t.string   "auto_maker",     limit: 255
+    t.string   "auto_model",     limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "zip_code",       limit: 255
+    t.string   "address",        limit: 255
+    t.string   "state",          limit: 255
+    t.string   "city",           limit: 255
+    t.float    "lat",            limit: 24
+    t.float    "lng",            limit: 24
+    t.string   "vin",            limit: 255
+    t.integer  "odometer",       limit: 4
+    t.string   "condition",      limit: 255
+    t.string   "engine",         limit: 255
+    t.string   "drive",          limit: 255
+    t.string   "fuel",           limit: 255
+    t.integer  "mpg",            limit: 4
+    t.string   "interior_color", limit: 255
+    t.string   "exterior_color", limit: 255
+    t.string   "title",          limit: 255
+    t.string   "transmission",   limit: 255
+    t.string   "style",          limit: 255
+    t.string   "package",        limit: 255
+    t.integer  "doors",          limit: 4
+    t.string   "features",       limit: 255
+    t.string   "option",         limit: 255
+    t.integer  "year",           limit: 4
+    t.integer  "price",          limit: 4
   end
 
   create_table "photos", force: :cascade do |t|

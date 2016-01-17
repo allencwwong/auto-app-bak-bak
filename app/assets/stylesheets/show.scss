@@ -1,0 +1,162 @@
+#show{
+    .carousel-inner > .item > img{
+      width: 70%;
+      height: 500px;
+      background: black;
+      margin:auto;
+  }
+  
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  
+  .carousel-indicators li{
+    width:100px;
+    height:60px;
+    background: black;
+  }
+  
+    .carousel-indicators .active{
+    width:100px;
+    height:60px;
+  }
+  
+  .carousel-indicators img {
+    border: 2px solid #FFFFFF;
+    float: left;
+    height: 54px;
+    left: 0;
+    width: 100px;
+}
+
+  .carousel-indicators .test {
+
+    border: 2px solid #FFFFFF;
+    float: left;
+    height: 54px;
+    left: 0;
+    width: 100px;
+}
+
+  .carousel-indicators .active img {
+    border: 2px solid #428BCA;
+    opacity: 0.7;
+}
+
+  .auto-infoBar{
+    width:100%;
+    height:100px;
+    background:url('http://www.mbusa.com/mercedes/compressed/images/responsive/backgrounds/grid.jpg');
+  }
+  .auto-list{
+    width:30%;
+    height:100%;
+    padding:10px 10px 50px 10px;
+    background:#efefef;
+    color:#333;
+    list-style:none;
+    margin:0px !important;
+    float:left;
+  }
+
+  .auto-list h1{
+    margin:0px;
+    padding:0px;
+  }
+  
+  .auto-list li{
+    border-bottom:1px solid #000;
+    float:left;
+    margin:0 15px 0 0;
+    padding:10px 0;
+    width:90px;
+  }
+  
+  .auto-list li.alt{
+    border-bottom:1px solid #000;
+    float:left;
+    margin-right:10px;
+    width:230px;
+  }
+  
+  .list-set{
+    width:100%;
+    margin:0px;
+    padding:0px;
+  }
+
+  .list-heading{
+    font-size:18px;
+    font-weight: 400;
+  }
+
+  .list-content{
+    font-size:18px;
+  }
+
+  #myCarousel{
+    box-shadow: 0px 3px 12px #888888;
+  }  
+  
+  .auto-infoBar{
+    box-shadow: 0px 3px 12px #888888; 
+    margin-bottom: 2px;   
+  }
+
+  .auto-infoBar h1{
+    font-weight: 400;
+    vertical-align: middle;
+    font-size: 42px;
+    margin:5px 10px 10px 2px;
+    float:left;
+  }
+
+  .auto-infoBar h2{
+    padding:10px 0 0 0;
+    font-weight: 300;
+    font-size:16px;
+  }
+
+  .auto-infoBar sup{
+    font-size:18px !important;
+    margin:20px 0px 10px 0px;
+    display: inline;
+    float:left;
+  }
+
+  .infoBar-section{
+    float:left;
+    margin:0px;
+    padding:0 0 0 60px;
+  }
+
+  #main-content{
+    width:100%;
+    height:500px;
+    background:skyblue;
+    margin:1px 0px;
+    padding:0px;
+  }
+
+  #listing-info{
+    float:right;
+    width:70%;
+    background:pink;
+    padding:0 0 20px 0;
+  }
+
+  #auto-feature{
+
+  }
+  
+
+
+
+
+
+
+
+
+
+  } // end of scss
