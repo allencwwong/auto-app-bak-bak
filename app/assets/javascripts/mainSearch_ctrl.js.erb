@@ -1,17 +1,22 @@
 (function (){
 
   "use strict"; 
-  angular.module("app",["ui.bootstrap","ngAnimate"]).controller("mainSearchCtrl", function($scope,$http) {
+  //  angular.module("app", []).controller((){});
+  //  }());
 
-    // naming convention 
-    // $scope or var camel case
-    // function snake case
+  angular.module("app.controllers").controller("mainSearchCtrl", function($scope,$http) {
+
+    // =====naming convention====== 
+    //  $scope or var camel case
+    //  function snake case
 
       $scope.setup = function(){
       $http.get("/api/v1/autos.json").then(function(response){
       $scope.autoMakers = response.data;
       });
     }
+
+    // post function
 
       $scope.makeDescription = "Select a Make";
       $scope.modelDescription = "Select a Model";

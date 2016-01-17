@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   root to: 'autos#index'
   get '/autos/home', to: 'autos#home'
   resources :autos
-
-  namespace :admin do
-    resources :admins
-  end
+  resources :users
 
 
   namespace :api do

@@ -1,0 +1,37 @@
+class UsersController < ApplicationController
+  
+  def index
+  end
+
+  def show
+  end
+
+  def new
+    auto_makers = AutoMaker.all
+    auto_models = AutoModels.all
+    @maker_list = []
+    @model_list =[]
+
+    auto_makers.each do |make|
+      @maker_list << make.name
+    end
+
+    auto_models.each do |model|
+      @model_list << model.name
+    end    
+  
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+end

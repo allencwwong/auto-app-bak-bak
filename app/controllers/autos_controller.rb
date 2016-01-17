@@ -8,6 +8,7 @@ class AutosController < ApplicationController
     @listing_lng = []
     @listing_photos_url = []
     @listing_details = []
+    @listing_ids = []
 
     @map_api = ENV['MAP_API_KEY']
     
@@ -15,7 +16,8 @@ class AutosController < ApplicationController
 
     @listings.each do |listing|
 
-      id= listing.id
+      id = listing.id
+      @listing_ids << listing.id
 
       @listing_titles << "#{listing.auto_maker} #{listing.auto_model}"
 
@@ -43,7 +45,7 @@ class AutosController < ApplicationController
   end #end of index
 
   def new 
-    @listing = Auto.new
+
   end
 
   def home 

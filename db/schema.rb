@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116082316) do
+ActiveRecord::Schema.define(version: 20160117091732) do
 
   create_table "auto_makers", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 20160116082316) do
     t.string   "option",         limit: 255
     t.integer  "year",           limit: 4
     t.integer  "price",          limit: 4
+    t.string   "status",         limit: 255
+    t.string   "user_id",        limit: 255
   end
 
   create_table "photos", force: :cascade do |t|
@@ -120,5 +122,13 @@ ActiveRecord::Schema.define(version: 20160116082316) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "watches", force: :cascade do |t|
+    t.integer  "watcher",      limit: 4
+    t.integer  "watched_list", limit: 4
+    t.datetime "watched_date"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end
