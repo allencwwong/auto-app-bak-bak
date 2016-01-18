@@ -1,91 +1,52 @@
+<style>
+form{
+  width:95%;
+  margin:auto;
+}
+</style>  
   <div class="container-fluid">
     <div class="row">
-    <div class="form-group" ng-class="">
 
-    <select>
-   <option value="" ng-repeat="autoMaker in autoMakers">{{autoMaker}}</option>
-  </select>
+      <form>
+        <div class="form-group">
+        <h1>Create New Listing:</h1> 
+        <label for="selectMaker">Select a Make:</label>
+        <select class="form-control" ng-model="selectedMake.value" ng-change="makeChange()" ng-options="autoCollection.make_name as autoCollection.make_name for autoCollection in autoCollections">
+        </select>
 
-        <label class="control-label col-md-3">First name <span class="required">* </span> </label>
-        <div class="col-md-4">
-          <input type="text" name="first_name" class="form-control" ng-model="user.first_name" required placeholder="first name"/>
-        </div>
-        <p ng-show="" class="help-block">First name is required.</p>
-      </div>
-      <div class="form-group" ng-class="{'has-error' : submitted && userForm.last_name.$invalid}">
-        <label class="control-label col-md-3">Last name <span class="required">* </span> </label>
-        <div class="col-md-4">
-          <input type="text" name="last_name" class="form-control" ng-model="user.last_name" required placeholder="last name"/>
-        </div>
-        <p ng-show=" submitted && userForm.last_name.$invalid" class="help-block">Last name is required.</p>
-      </div>
-      <div class="form-group" ng-class="{'has-error' : submitted && userForm.email.$invalid}">
-        <label class="control-label col-md-3">Email <span class="required">* </span> </label>
-        <div class="col-md-4">
-          <input type="email" name="email" class="form-control" ng-model="user.email" required placeholder="test@example.com"/>
-        </div>
-        <p ng-show="submitted && userForm.email.$error.required" class="help-block">Email is required.</p>
-        <p ng-show="submitted && userForm.email.$error.email" class="help-block">Enter valid email</p>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-md-3">Phone </label>
-        <div class="col-md-4">
-          <input type="text" name="phone" class="form-control" ng-model="user.phone" placeholder="9876543210"/>
-        </div>
-        <p ng-show="submitted && userForm.phone.$invalid" class="help-block">Phone is required.</p>
-      </div>
+        <h1>{{selectedMake.value}}</h1>        
 
-      <div ng-repeat="address in user.addresses">
-        <div ng-hide="address._destroy">
-          <div class="form-group">
-            <label class="control-label col-md-2">Address 1 </label>
-            <div class="col-md-3">
-              <input type="text" class="form-control" ng-model="address.street1" placeholder="Address 1"/>
-            </div>
-            <label class="control-label col-md-2">Address 2 </label>
-            <div class="col-md-3">
-              <input type="text" class="form-control" ng-model="address.street2" placeholder="Address 2"/>
-            </div>
-            <div class="col-md-2">
-              <a ng-click="removeAddress($index, user)" class="btn btn-xs btn-danger">X</a>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-2">City </label>
-            <div class="col-md-3">
-              <input type="text" class="form-control" ng-model="address.city" placeholder="Pune"/>
-            </div>
-            <label class="control-label col-md-2">State </label>
-            <div class="col-md-3">
-              <input type="text" class="form-control" ng-model="address.state" placeholder="MH"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-2">Country</label>
-            <div class="col-md-3">
-              <input type="text" class="form-control" ng-model="address.country" placeholder="India"/>
-            </div>
-            <label class="control-label col-md-2">Zipcode </label>
-            <div class="col-md-3">
-              <input type="text" class="form-control" ng-model="address.zipcode" placeholder="12345"/>
-            </div>
-          </div>
-          <hr/>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-offset-12">
-          <a ng-click="addAddress()" class="btn btn-success btn-xs">+ Add address </a>
-        </div>
-      </div>
+        <label for="selectModel">Select a Model:</label>
+        <select class="form-control" ng-disabled="modelSelection" ng-model="selectedModel" ng-options="">
+          <option ng-show="modelSelection">Please Select a Make</option>
+        </select>
+
+        <label for="selectMaker">Select a Year:</label>
+        <select class="form-control" ng-model="selectedYear" ng-disabled="modelSelection" ng-options="autoYear as autoYear for autoYear in autoYears">
+        <option ng-if="modelSelection">Please Select a Make</option>
+        </select>
+
 
       <div class="form-group">
-        <div class="pull-left">
-          <a class="btn btn-default" href="/"> Back</a>
-          <button type="submit" class="btn btn-primary" ng-click="submitted=true">Submit</button>
+      <h1>Listing Location</h1>
+          <label for="address">Enter Address:</label>
+          <input type="address" class="form-control" id="" ng-model="inputAddress.value" placeholder="Address">
+          <label for="zip">Enter Zip Code:</label>
+          <input type="text" class="form-control" id="" placeholder="Zip Code" ng-model="inputZip.value" >
+          <label for="zip">City</label>
+          <input type="text" class="form-control" placeholder="City" ng-value="zipResults.results[0].address_components[1].long_name"></div>
+          <label for="zip">State</label>
+          <input type="text" class="form-control" placeholder="State" ng-value="zipResults.results[0].address_components[3].long_name"></div>    
         </div>
-      </div>
 
+        
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Check me out
+          </label>
+        </div>
+        <button ng-click="addListing()">Submit</button>
+      </form>
 
     </div>
   </div>

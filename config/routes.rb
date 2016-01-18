@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
   root to: 'autos#index'
   get '/autos/home', to: 'autos#home'
   resources :autos
-  resources :users
+  resources :members
 
 
   namespace :api do

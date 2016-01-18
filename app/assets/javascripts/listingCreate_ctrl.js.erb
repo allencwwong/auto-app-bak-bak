@@ -1,0 +1,78 @@
+(function () {
+      "use strict"; 
+  angular.module("app.controllers").controller("listingCreateCtrl", function($scope,$http) {
+
+    // =====naming convention====== 
+    //  $scope or var camel case
+    //  function snake case
+    
+    $scope.autoMakers = [];
+    $scope.autoYears = [];
+    
+
+    $scope.myMake;
+ 
+    //$scope.autoCollections[i].auto_details.auto_models.length
+    //$scope.autoCollections[i].auto_details.auto_models[j].model_name
+
+    $scope.setup = function(){
+      $http.get("/api/v1/autos.json").then(function(response){
+      $scope.autoCollections = response.data; 
+        
+      function get_make_path(make){ 
+      $scope.autoModels = []; 
+        for(var i=0;i<$scope.autoCollections.length;i++){
+          //console.log(make);
+          //console.log($scope.autoCollections[0].make_name);
+          if($scope.autoCollections[i].make_name === make){
+            //var modelArrayLength = $scope.autoCollections[i].auto_details.auto_models.length;
+            //var modelArrayLength = 3;
+            //console.log(modelArrayLength);
+            //console.log($scope.autoCollections[i]);
+            //console.log($scope.autoCollections[0].auto_details.auto_models[0].model_name);
+            for(var j=0;j<$scope.autoCollections[i].auto_details.auto_models.length;j++){
+                $scope.autoModels.push($scope.autoCollections[i].auto_details.auto_models[j].model_name);
+              }
+            }
+
+          } 
+        
+      } // end of get make path
+get_make_path($scope.myMake);
+console.log($scope.autoModels);
+
+
+      }); // end of http get      
+    } // end of setup
+
+
+$scope.modelSelection = true;
+
+$scope.selectedMake = function(){
+    console.log("happening!");
+    $scope.modelSelection = false;
+    get_make_path($scope.myMake);
+    //$scope.selectedMake = $scope.myMake;
+}
+
+
+// create a way to display dropdown base on make
+
+//grab the make value from myMake
+
+//iterate thru autoCollections and gen a model list 
+
+
+
+
+    // get all model from ruby controller
+    
+
+    //store makes and models into javascript array
+
+    // store all selected data into an object save object into database
+
+    window.$scope = $scope;
+
+  }); // end of controller
+})(); //end of self invoke 
