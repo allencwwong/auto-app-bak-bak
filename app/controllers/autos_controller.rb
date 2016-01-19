@@ -24,14 +24,14 @@ class AutosController < ApplicationController
       @listing_details << listing.zip_code
 
       # Setup Coordinates 
-      coordinates = Geocoder.coordinates("#{listing.state} #{listing.zip_code}")
-      @listing_coordinates << coordinates
+      # coordinates = Geocoder.coordinates("#{listing.state} #{listing.zip_code}")
+      # @listing_coordinates << coordinates
 
-      #Set lat and lng arrary 
-      @listing_lat << coordinates[0]
-      @listing_lng << coordinates[1]
+      # #Set lat and lng arrary 
+      # @listing_lat << coordinates[0]
+      # @listing_lng << coordinates[1]
 
-      listing.update(lat: coordinates[0] , lng: coordinates[1])
+      #listing.update(lat: coordinates[0] , lng: coordinates[1])
 
     #Display main image for listing  
     @listings.find_by(id: id).photos.each do |photo|

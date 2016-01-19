@@ -355,11 +355,80 @@
       return newArray;
     }
 
-    $scope.lockedModel = function(){
-      if($scope.searchDetails.)
+    $scope.modelPanelStatus = function(){
+      if($scope.searchDetails.length < 1){
+        return true;
+      } 
+      else{
+        return false;
+      }
     }
 
+    $scope.descriptionShown = false;
+    $scope.toogleDescription = function(){
+      $scope.descriptionShown = !$scope.descriptionShown;
+    }
 
+    $scope.showPanel = function(show,make){
+      if(show && $scope.searchDetails.length < 1){
+        $scope.showOnePanel=true;
+        $scope.showDescription = return_desc_by_make(make);
+      } 
+      else if(show && $scope.searchDetails.length >= 1){
+        $scope.showTwoPanel=true;
+        $scope.showOnePanel=false;
+        $scope.showDescription = return_desc_by_make(make);
+        console.log("running show2");
+      }
+      else{
+        $scope.showOnePanel=false;
+        $scope.showTwoPanel=false;
+      }
+    }
+
+    $scope.showPanelTwo = function(show,model){
+      if(show && $scope.searchDetails.length >= 1){
+        $scope.showTwoPanel=true;
+        $scope.showOnePanel=false;
+        $scope.showDescription = model;
+        console.log("running show3");
+      }
+      else{
+        $scope.showOnePanel=false;
+        $scope.showTwoPanel=false;
+      }      
+    }
+
+    $scope.showInnerPanel = function(panelOneStatus,panelTwoStatus){
+      if(panelOneStatus && panelTwoStatus === false){
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+
+    $scope.showInnerPanelYear = function(panelOneStatus,panelTwoStatus){
+      if(panelOneStatus && panelTwoStatus === false){
+        return false;
+      } 
+      else if(panelTwoStatus && panelOneStatus === false){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+
+    $scope.show = "";
+
+    function return_desc_by_make(make){
+      for(var i=0;i<$scope.autoMakers.length;i++){
+        if($scope.autoMakers[i].make_name === make){
+          return $scope.autoMakers[i].make_description;
+        }
+      }
+    }
 
 
     window.$scope = $scope;

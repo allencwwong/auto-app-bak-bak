@@ -1,15 +1,47 @@
 #search{
 
+
   #main-panel{
     width:100%;
-    height:100%;
-    background:pink;
+    height: 600px;
+    background:#fff;
+    color:#000;
+  }
+
+  #search-display-bar{
+    width:100%;
+    height:80px;
+    background:#fff;
+    margin: 0 0 20px 0;
+  }
+
+  #search-display-bar p{
+    font-size:14px;
+  }
+
+  .search-display-top{
+    padding: 10px 10px 0 20px;
+  }
+
+  .search-params {
+    float:left;
+  }
+  .search-params h1{
+    font-size: 16px;
+  }
+
+  .input-line{
+    border-bottom:2px solid #000;
+    width:200px;
+    float: left;
+    margin: 0px 5px;
+    padding: 0 10px 0 15px;
   }
 
   .make-panel{
     width:33%;
-    height:100%;
-    background:green;
+    height:600px;
+    background:#777;
     float: left;
   }
 
@@ -19,23 +51,46 @@
 
   .model-panel{
     width:33%;
-    height: 100%;
-    background:#666;
+    height: 600px;
+    background:#888;
+    float: left;
+  }
+
+  .desc-panel-one{
+    width:67%;
+    height:100%;
+    background: #eee;
+    float:right;    
+  }
+
+  .desc-panel-two{
+   width:34%;
+   height:100%;
+   background: #ede;
+   float: right;
+  }
+
+  .year-panel{
+    width:34%;
+    height:600px;
+    background: #ede;
     float: left;
   }
  
   .jumbotron{
-    background:#333333 url(http://www.wallpaperfoy.com/wp-content/uploads/2015/12/1920x1080-Wallpaper-cars-HD-D74.jpg) no-repeat;
+    // background:#333333 url(http://www.wallpaperfoy.com/wp-content/uploads/2015/12/1920x1080-Wallpaper-cars-HD-D74.jpg) no-repeat;
     background-size: 100%;
-    height:768px;
+    margin-bottom:0px;
+    background: linear-gradient(to top, #0E74C2 0%,#0E74C2 50%,#000000 50%,white 50%,white 100%); /* W3C */
+
   }  
   
   .searchMain{
     float:left;
-    background:black;
     margin:0px;
     padding:0px;
     list-style: none;
+    height: 100%;
   }
   
   .searchMain li{

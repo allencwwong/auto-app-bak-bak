@@ -22,7 +22,6 @@
 //= require theme/jquery.snippet.min
 //= require theme/jquery.fitvids
 //= require theme/hover-dropdown
-//= require turbolinks
 //= require theme/activate-snippet
 //= require theme/bootstrap-dropdownhover.min
 //= require theme/buttons
