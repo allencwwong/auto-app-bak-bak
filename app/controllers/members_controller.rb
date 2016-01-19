@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   def index
+    @listings = User.find_by(id: current_user.id).listings
   end
 
   def show

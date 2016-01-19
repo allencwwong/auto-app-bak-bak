@@ -62,6 +62,20 @@
         Vertical content 2
       </uib-tab>
     </uib-tabset>
+    <button ng-click="getResults()">Search</button>
+    <div> Search Results</div>
+    <table class="table table-hover">
+      <tbody ng-repeat="returnResult in returnedResults">
+        
+        <tr ng-repeat="returnResultData in returnResult">
+          <td><a href="/autos/{{returnResultData.id}}">{{returnResultData.id}}</a></td>
+          <td>{{returnResultData.auto_maker}}</td>
+          <td>{{returnResultData.auto_model}}</td>
+          <td>{{returnResultData.year}}</td>
+          <td>{{returnResultData.condition}}</td> 
+        </tr>                      
+      </tbody>  
+    </table>
   </div> <!-- end of jumbo -->
 </div> <!-- end of container -->
 

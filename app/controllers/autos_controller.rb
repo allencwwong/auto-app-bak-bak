@@ -48,13 +48,22 @@ class AutosController < ApplicationController
 
   end
 
-  def home 
+  def search 
     @auto_maker_names = []
 
     @auto_makers = AutoMaker.all
     @auto_makers.each do |make|
       @auto_maker_names << make.name
     end
+  end
+
+  def searchNew
+    @auto_maker_names = []
+
+    @auto_makers = AutoMaker.all
+    @auto_makers.each do |make|
+      @auto_maker_names << make.name
+    end    
   end
 
   def show

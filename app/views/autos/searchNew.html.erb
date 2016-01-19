@@ -1,0 +1,102 @@
+
+<style>
+  .selected{
+    background:yellow;
+  }
+</style>
+
+<div id="search" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
+  <div class="row jumbotron">
+
+    <div id="main-panel" class="">
+      <div class="make-panel" class="">
+        <h1>Select Make(s):</h1>
+           <ul class="searchMain"> 
+              <li ng-repeat="autoMaker in autoMakers">
+                <div class="autoMakeSet" ng-click="addMakesToSearch(autoMaker.make_name)" ng-class="">
+                  <a href="#"><img src="{{autoMaker.logo}}" width="150px"></a>
+                  <a href="#">{{autoMaker.make_name}}</a>
+                </div>  
+              </li>
+           </ul>         
+      </div>
+      <!-- end of make panel -->
+      <div class="model-panel">
+        <div ng-show="">Select a Make to view Models</div>
+      </div>
+      <div class="year-panel"></div>
+    </div>
+
+<!--         <div>Search All Cars make by <span ng-repeat="searchDetail in searchDetails">{{searchDetail.make}} </span> model <span ng-repeat="searchDetail in searchDetails">{{searchDetail.model}}</span> from <span ng-repeat="searchYear in searchYears">{{searchYear}}</div>
+        
+
+                 <ul class="searchMain"> 
+                    <li ng-repeat="autoMaker in autoMakers">
+                      <div class="autoMakeSet" ng-click="addMakesToSearch(autoMaker.make_name)" ng-class="">
+                        <a href="#"><img src="{{autoMaker.logo}}" width="150px"></a>
+                        <a href="#">{{autoMaker.make_name}}</a>
+                      </div>  
+                    </li>
+                 </ul>  
+                 <div class="searchDesc">
+                    <p>{{makeDescription}}</p>
+                 </div>
+              </div> 
+
+
+            
+              <ul class="searchMain">
+                <li ng-repeat="modelName in modelNames"><a href="#" ng-click="addModelsToSearch(modelName)">{{modelName}}</a></li>
+              </ul>  
+              
+              <div class="searchDesc">
+                    <p>{{modelDescription}}</p>
+              </div>          
+            
+            </div>
+
+            <div class="tab-content-inner">
+              <ul class="searchContent-year">
+                <li ng-repeat="autoYear in autoYearList track by $index" ng-click="addYearToSearch(autoYear)" class="searchContent-year"><a href="#">{{autoYear}}</a></li>
+              </ul>
+            </div> 
+    <button ng-click="getResults()">Search</button> -->
+
+
+       
+
+
+
+
+
+  <!--##### SEARCH RESULTS ######-->
+    <div> Search Results</div>
+
+    <table class="table table-hover">
+      <tbody ng-repeat="returnResult in returnedResults">
+        
+        <tr ng-repeat="returnResultData in returnResult">
+          <td><a href="/autos/{{returnResultData.id}}">{{returnResultData.id}}</a></td>
+          <td>{{returnResultData.auto_maker}}</td>
+          <td>{{returnResultData.auto_model}}</td>
+          <td>{{returnResultData.year}}</td>
+          <td>{{returnResultData.condition}}</td> 
+        </tr>                      
+      </tbody>  
+    </table>
+  </div> <!-- end of jumbo -->
+</div> <!-- end of container -->
+
+
+<script type="text/javascript">
+
+</script>
+
+
+
+
+
+
+
+
+

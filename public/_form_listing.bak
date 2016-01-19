@@ -1,0 +1,128 @@
+<style>
+form{
+  width:95%;
+  margin:auto;
+}
+.list-desc-info{
+  margin:28px 0 20px 15px;
+  height:38px;
+  border-left:2px solid blue;
+}
+
+</style>  
+
+ 
+
+      <form>
+        <div class="form-group">
+        <h1>Create New Listing:</h1> 
+        <h2>Car Base Information</h2>
+        <div class="col-xs-4">
+          <label for="selectMaker">Select a Make:</label>
+          <select class="form-control" ng-model="selectedMake.value" ng-change="makeChange()" ng-options="autoCollection.make_name as autoCollection.make_name for autoCollection in autoCollections">
+          </select>
+        </div>       
+
+        <div class="col-xs-4">
+          <label for="selectModel">Select a Model:</label>
+          <select class="form-control" ng-disabled="modelSelection" ng-model="selectedModel" ng-options="">
+            <option ng-show="modelSelection">Please Select a Make</option>
+          </select>
+        </div>
+    
+        <div class="col-xs-4">
+          <label for="selectMaker">Select a Year:</label>
+          <select class="form-control" ng-model="selectedYear" ng-disabled="modelSelection" ng-options="autoYear as autoYear for autoYear in autoYears">
+          <option ng-if="modelSelection">Please Select a Make</option>
+          </select>
+        </div>
+    </div> <!-- end of row -->
+
+  <!-- Base + Condition info -->
+   <div class="row">
+     <div class="form-group">
+        <div class="col-xs-12"> 
+         <div class="col-xs-4">
+           <label>Car Condition:</label>
+           <select class="form-control" ng-model="selectedCondition.vaule" ng-options="autoCondition as autoCondition for autoCondition in autoConditions"></select>
+         </div>
+         <div class="col-xs-7 list-desc-info">
+          <p>info</p>
+        </div>
+       </div>
+       
+       <div class="col-xs-12"> 
+         <div class="col-xs-4">
+          <label>Car Title:</label>  
+          <select class="form-control" ng-model="selectedTitle.vaule" ng-options="autoTitle as autoTitle for autoTitle in autoTitles"></select>
+         </div>
+         <div class="col-xs-7 list-desc-info">info</div>
+       </div>
+     </div>
+   </div>
+
+   <!-- Spec info -->  
+
+    <div class="row">
+     <div class="form-group">
+        <div class="col-xs-12"> 
+         <div class="col-xs-2">
+           <label>Car Engine:</label>
+           <select class="form-control" ng-model="selectedEngine" ng-options="autoEngine as autoEngine for autoEngine in autoEngines"></select>
+         </div>
+         <div class="col-xs-3 list-desc-info">
+          <p>info</p>
+        </div>
+         <div class="col-xs-2">
+          <label>Car Drive Type:</label>  
+          <select class="form-control" ng-model="selectedTitle.vaule" ng-options="autoTitle as autoTitle for autoTitle in autoTitles"></select>
+         </div>
+         <div class="col-xs-4 list-desc-info">info</div>        
+       </div>
+       
+       <div class="col-xs-12"> 
+
+       </div>
+     </div> <!-- end of form group -->
+   </div> <!-- end of row -->
+
+   <!-- Listing location -->  
+    <div class="row">    
+
+
+      <div class="form-group">
+      <h2>Listing Location</h2>
+
+        <div class="col-xs-6">
+          <label for="address">Enter Address:</label>
+          <input type="address" class="form-control" id="" ng-model="inputAddress.value" placeholder="Address">
+        </div>
+
+        <div class="col-xs-6">
+          <label for="zip">Enter Zip Code:</label>
+          <input type="text" class="form-control" id="" placeholder="Zip Code" ng-model="inputZip.value" >
+        </div>
+        
+        <div class="col-xs-6">  
+          <label for="zip">City</label>
+          <input type="text" class="form-control" placeholder="City" ng-value="zipResults.results[0].address_components[1].long_name">
+        </div>
+
+        <div class="col-xs-6">
+          <label for="zip">State</label>
+          <input type="text" class="form-control" placeholder="State" ng-value="zipResults.results[0].address_components[3].long_name">    
+        </div>
+
+        
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Check me out
+          </label>
+        </div>
+        <button ng-click="addListing(selectedEngine)">Submit</button>
+    </div>
+    </div>
+      </form>
+
+
+ 

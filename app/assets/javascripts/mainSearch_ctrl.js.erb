@@ -64,27 +64,6 @@
         }
       }
 
-      // function return_index_of_car_model(car_model,car_array){
-      //   console.log("return index car model");
-      //   console.log(car_array.length);
-      //   if(car_array.length < 1){
-      //     console.log("the array is empty");
-      //     return null;
-      //   } 
-      //   else {
-      //     for(var i = 0;i < car_array.length;i++){
-      //      for(var j =0;j < car_array[i].model.length;j++){
-      //       if(car_model === car_array[i].model[j].model){
-      //         console.log("return car model index")
-      //         console.log(j);
-      //         return j;
-      //       }
-      //     }
-      //   } 
-      //     return null;
-      //   }
-      // }
-
 
       function add_new_car(car_make,car_array){
         if(return_index_of_car_make(car_make,car_array) || return_index_of_car_make(car_make,car_array) == 0){
@@ -341,6 +320,46 @@
       console.log($scope.searchYears);
       }      
     
+    $scope.getResults = function(){
+
+     
+        for(var i=0;i<$scope.searchDetails.length;i++){
+            if($scope.searchDetails[i].model.length < 1){
+              alert("missing model in " + $scope.searchDetails[i].make);
+            }
+          }              
+
+      var searchAllParams = {
+        details: $scope.searchDetails,
+        years: $scope.searchYears
+      }
+      $http.post("/api/v1/autos/search.json", searchAllParams).then(function(response){
+        $scope.searchResults = response.data;
+        //console.log($scope.searchResults);
+        $scope.returnedResults = compact($scope.searchResults);
+      });
+
+      // $http.post('/api/v1/autos.json', newListing).then(function(response){
+      //   console.log("saving!")  
+      //   });
+    }
+
+    function compact(array) {
+      var newArray = new Array();
+      for (var i = 0; i < array.length; i++) {
+        if (array[i].length > 0) {
+          newArray.push(array[i]);
+        }
+      }
+      console.log(newArray);
+      return newArray;
+    }
+
+    $scope.lockedModel = function(){
+      if($scope.searchDetails.)
+    }
+
+
 
 
     window.$scope = $scope;

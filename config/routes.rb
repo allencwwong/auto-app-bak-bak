@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions" }
   root to: 'autos#index'
-  get '/autos/home', to: 'autos#home'
+  get '/autos/searchNew', to: 'autos#searchNew'
+  get '/autos/search', to: 'autos#search'
+  # /autos/home to autos#home
   resources :autos
   resources :members
 
 
   namespace :api do
     namespace :v1 do
+      post 'autos/search', to: 'autos#search'
       resources :autos
     end
   end

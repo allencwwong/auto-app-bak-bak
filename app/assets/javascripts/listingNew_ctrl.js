@@ -20,6 +20,8 @@
       $http.get("/api/v1/autos/new.json").then(function(response){
       $scope.autoMakeByModels = response.data;
       });
+
+      create_auto_years(1980);
     }
 
     //autoCollections
@@ -38,13 +40,66 @@
     */
 
     $scope.selectedMake = {value: ''};
+    $scope.selectedCondition = {value: ''};
+    $scope.selectedEngine = {value: ''};
+    $scope.selectedTransmission = {transmission: ''};
+    $scope.selectedYear = {value: ''};
+    $scope.selectedVin = {value: ''};
+    $scope.selectedOdometer = {value: ''};
+    $scope.selectedDrive = {value: ''};
+    $scope.selectedFuel = {value: ''};
+    $scope.selectedMpg = {value: ''};
+    $scope.selectedInterior_color = {value: ''};
+    $scope.selectedExterior_color = {value: ''};
+    $scope.selectedTitle = {value: ''};
+    $scope.selectedStyle = {value: ''};
+    $scope.selectedPackages = {value: ''};
+    $scope.selectedDoors = {value: ''};
+    $scope.selectedFeatures = {value: ''};
+    $scope.selectedPption = {value: ''};
     $scope.inputZip = {value: ''};
     $scope.inputAddress = {value: ''};
 
+    // auto details 
+    
+    //condition
+    $scope.autoConditions = ["New","Excellent","Great","Good","Fair","Salvage"];
+    $scope.autoTitles=["Clean","Salvage"];
+    
+    //spec details
+    $scope.autoEngines = ["3 Cylinder","4 Cylinder","5 Cylinder","6 Cylinder (I-6 vs. v-6)","8 Cylinder", "Electric","Hybrid","Rotary Engine"];
+    $scope.autoDrives = ["AWD/4WD","Front Wheel","Drive Rear Wheel Drive"];
+    $scope.autoTransmissions = [
+                                {transmission: "Automatic", speed:["4","5","6","7","8","9","10"]},
+                                {transmission: "CVT"},
+                                {transmission: "Dual Clutch"},
+                                {transmission: "SMG"},
+                                {transmission: "Manual", speed:["5","6","7"]},
+                              ];
+
+    $scope.autoFuels =["Gasonline","Hybrid","Electric","Diesel","Alternative"];
+    $scope.autoMpgs =["40+ MPG","31 - 40 MPG","21 - 30 MPG","10 - 20 MPG"];
+    
+    //deisgn
+    $scope.autoDoors = ["2 Door","3 Door","4 Door","5 Door","6 Door"];
+    $scope.autoStyles = ["Convertiable","Couple","Sedan","SUV/Cross Over","Truck","Wagon","Van/Minivan","Hatchback","Commerical"];
+    $scope.autoInteriorColors = [];
+    $scope.autoExteriorColors=[];
+
+    //options
+    $scope.autoPackages = ["Premium","Comfort","Driver assistance","luxury","Technology","Sport","Cold weather","Ultimate","Lighting"];
+    $scope.autoOptions = ["Sport Seat","Lock lug nuts","Navigation","Active cruise control","Rear sunshine","Rear seat entertainment",{Options: "Wheel Size", Size:[]}];
+    $scope.autoFeatures = ["3rd Row Seats","Backup Camera","Bluetooth, Hands-Free","CD Player","Cruise Control","Disability Equipped","DVD Player","Heated Seats","Keyless Entry","Leather Seats","Lift Kit","Multi-zone Climate Control","Navigation","Portable Audio Connection","Power Locks","Power Windows"," Premium Audio","Premium Wheels","Security System","Steering Wheel Controls","Sunroof","Trailer Hitch"];
 
     $scope.autoYears = [];
     $scope.modelSelection = true;
     //console.log($scope.autoCollections);
+
+    $scope.showTransAuto = function(){
+      if($scope.selectedTransmission.transmission.transmission == 'Automatic'){
+        return true;
+      }
+    }
 
     $scope.makeChange = function(){
 
@@ -64,6 +119,7 @@
       $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.inputZip.value+'&sensor=true').then(function (response) {
       $scope.zipResults = response.data;
       console.log($scope.selectedMake.value);
+      console.log($scope.selectedEngine.value);
   });
       }
     });
@@ -99,17 +155,37 @@
         //console.log($scope.autoYears);
       }
 
-      create_auto_years(1980);
+      
 
       $scope.addListing = function(){
         var newListing = {
           auto_maker: $scope.selectedMake.value,
           auto_model: '',
-          zip_code: $scope.inputZip.value,
           address: $scope.inputAddress.value,
+          zip_code: $scope.inputZip.value,
           state: $scope.zipResults.results[0].address_components[1].long_name,
-          city: $scope.zipResults.results[0].address_components[3].long_name
+          city: $scope.zipResults.results[0].address_components[3].long_name,
+          engine: $scope.selectedEngine.value,
+          year: $scope.selectedYear.value,
+          vin: $scope.something.value,
+          odometer: $scope.something.value,
+          condition: $scope.something.value, 
+          engine: $scope.something.value,
+          drive: $scope.something.value,
+          fuel: $scope.something.value,
+          mpg: $scope.something.value,
+          interior_color: $scope.something.value,
+          exterior_color: $scope.something.value,
+          title: $scope.something.value,
+          transmission: $scope.something.value,
+          style: $scope.something.value,
+          packages:$scope.something.value,
+          doors: $scope.something.value,
+          features: $scope.something.value,
+          option: $scope.something.value,
+          status: "active"
         };
+        console.log(newListing);
         $http.post('/api/v1/autos.json', newListing).then(function(response){
         console.log("saving!")  
         });

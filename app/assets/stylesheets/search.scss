@@ -1,0 +1,71 @@
+#search{
+
+  #main-panel{
+    width:100%;
+    height:100%;
+    background:pink;
+  }
+
+  .make-panel{
+    width:33%;
+    height:100%;
+    background:green;
+    float: left;
+  }
+
+  .make-panel h1{
+    font-size:24px;
+  }
+
+  .model-panel{
+    width:33%;
+    height: 100%;
+    background:#666;
+    float: left;
+  }
+ 
+  .jumbotron{
+    background:#333333 url(http://www.wallpaperfoy.com/wp-content/uploads/2015/12/1920x1080-Wallpaper-cars-HD-D74.jpg) no-repeat;
+    background-size: 100%;
+    height:768px;
+  }  
+  
+  .searchMain{
+    float:left;
+    background:black;
+    margin:0px;
+    padding:0px;
+    list-style: none;
+  }
+  
+  .searchMain li{
+    float:left;
+    width: 150px;
+    height: 180px;
+    margin:5px 10px 5px 5px;
+  }
+
+
+  .searchContent-year{
+    margin:0px;
+    padding:0px;
+    float:left;
+    list-style: none;
+  }
+
+  .searchContent-year li{
+    float:left;
+    width:50px;
+    margin:3px;
+    padding:0px;
+    font-size:22px;
+  }
+
+  .autoMakeSet{
+    margin:0px;
+    padding:0px;
+  }
+  
+
+} //end of css 
+
