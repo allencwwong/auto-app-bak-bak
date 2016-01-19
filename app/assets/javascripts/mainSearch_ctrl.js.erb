@@ -89,7 +89,7 @@
         // acura 
         var addModel = true;
         console.log("add new model:")
-        console.log(modelMake);
+        //console.log(modelMake);
 
         var makeIndex = null;
         // get make car array and return car array index
@@ -97,7 +97,9 @@
           if(car_array[i].make.indexOf(modelMake) != -1){
             // check if car array matches make then return 
             makeIndex = i;
+            console.log("make Index returned");
             break;
+            console.log("should not show");
           }
         }
 
@@ -106,6 +108,7 @@
           for(var j=0;j<car_array[makeIndex].model.length;j++){
             if(car_array[makeIndex].model[j] === car_model){
               addModel = false;
+              console.log("add model false , model exist call remove fx")
             }
           }
         }
@@ -117,7 +120,9 @@
           for(var k=0; k<car_array.length;k++){
             if(car_array[k].make === modelMake){
               car_array[k].model.push(car_model);
+              console.log("adding follwoing model")
               console.log(car_array[k].model);
+
             }
           }
         }
@@ -134,15 +139,17 @@
         //chevy
         for(var i = 0; i < $scope.autoMakers.length; i++){
           // loop thru all model per maker
-          console.log("finding automaker!");
+          //console.log("finding automaker!");
           for(var j = 0;j< $scope.autoMakers[i].auto_details.auto_models.length;j++){
-            console.log("finding automaker2!");
+            //console.log("finding automaker2!");
             if (car_model === $scope.autoMakers[i].auto_details.auto_models[j].model_name){
               console.log("found automaker:");
+              console.log($scope.autoMakers[i].make_name);
               return $scope.autoMakers[i].make_name;
             }
           }
-          console.log("something is wrong");
+          console.log("cant not find make by model");
+          console.log(car_model);
         }
       }
 
@@ -171,7 +178,7 @@
                   // temp_modelList.push(modelList[k].model_name);
                   // modelList_by_make[j] = temp_modelList;
                   // car_array[j].model = modelList_by_make[j]; 
-
+                //console.log("storing into modelNames");    
                 $scope.modelNames.push(modelList[k].model_name); // store
                 
               }
@@ -221,10 +228,10 @@
             for(var j=0;j< $scope.autoMakers[i].auto_details.auto_models.length;j++){
              console.log($scope.autoMakers[i].auto_details.auto_models[j]);
              var model_index = model_array.indexOf($scope.autoMakers[i].auto_details.auto_models[j].model_name);
-             console.log(model_index);
+             //console.log(model_index);
              model_array.splice(model_index,1); 
              console.log("deleted model array:")
-             console.log(model_array);
+             //console.log(model_array);
             }
           }
         }
@@ -236,9 +243,9 @@
           for(var j=0;j<car_array[i].model.length;j++){
             var modelIndex = car_array[i].model[j].indexOf(car_model); 
             if(modelIndex != -1){
-              console.log(car_array[i].model);
+              //console.log(car_array[i].model);
               car_array[i].model.splice(modelIndex,1);
-              console.log(car_array[i].model);
+              //console.log(car_array[i].model);
             }
           }
         }
@@ -259,12 +266,11 @@
             for(var i=start_year;i < current_year;i++){
             $scope.autoYearList.push(i);
             }
-            console.log("show years!");
+            //console.log("show years!");
           }
           else{
             console.log("empty");
             $scope.autoYearList = [];
-            $scope.autoYearList[0] = "Please Select a Make."
           }
         }
 
@@ -282,7 +288,7 @@
           add_new_car(make, $scope.searchDetails);
           show_car_models($scope.searchDetails);
           console.log("added new car and show models");
-          console.log($scope.searchDetails);
+          //console.log($scope.searchDetails);
           console.log($scope.modelNames);
        }
           show_make_description(make);
@@ -295,14 +301,27 @@
         }
       } 
 
+      $scope.selectedModels = [];
+
       $scope.addModelsToSearch = function(model){
         if(add_new_model(model,$scope.searchDetails) === 0){
+          //conosle.log(model);
+          console.log($scope.searchDetails[0].model);          
           delete_search_model(model,$scope.searchDetails);
-          console.log("delete search model");
+          console.log($scope.searchDetails[0].model);
+          //var modelIndex = $scope.selectedModels.indexOf(model);
+          //$scope.selectedModels.splice(modelIndex,1);          
+          //console.log("delete search model");
+          //console.log($scope.selectedModels);
         }
         else{
           add_new_model(model,$scope.searchDetails);
-          console.log("added search model");
+          console.log($scope.searchDetails[0].model);
+          //console.log($scope.selectedModels);
+          //console.log($scope.searchDetails);          
+          //$scope.selectedModels.push(model);
+          //$scope.selectedModels = unique($scope.selectedModels);
+          //console.log("added search model");
         }
       }
 
@@ -378,7 +397,7 @@
         $scope.showTwoPanel=true;
         $scope.showOnePanel=false;
         $scope.showDescription = return_desc_by_make(make);
-        console.log("running show2");
+        //console.log("running show2");
       }
       else{
         $scope.showOnePanel=false;
@@ -391,7 +410,7 @@
         $scope.showTwoPanel=true;
         $scope.showOnePanel=false;
         $scope.showDescription = model;
-        console.log("running show3");
+        //console.log("running show3");
       }
       else{
         $scope.showOnePanel=false;

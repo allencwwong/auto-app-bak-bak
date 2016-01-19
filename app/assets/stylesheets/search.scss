@@ -23,11 +23,14 @@
     padding: 10px 10px 0 20px;
   }
 
-  .search-params {
+  .search-params{
     float:left;
   }
   .search-params h1{
     font-size: 16px;
+    float:left;
+    display: inline;
+    padding:0 5px 0 0;
   }
 
   .input-line{
@@ -41,7 +44,7 @@
   .make-panel{
     width:33%;
     height:600px;
-    background:#777;
+    background:#eee;
     float: left;
   }
 
@@ -52,7 +55,7 @@
   .model-panel{
     width:33%;
     height: 600px;
-    background:#888;
+    background:#ddd;
     float: left;
   }
 
@@ -60,20 +63,22 @@
     width:67%;
     height:100%;
     background: #eee;
-    float:right;    
+    float:right;  
+    margin:0px;
+    padding:20px;  
   }
 
   .desc-panel-two{
    width:34%;
    height:100%;
-   background: #ede;
+   background: #ededed;
    float: right;
   }
 
   .year-panel{
     width:34%;
     height:600px;
-    background: #ede;
+    background: #e1e1e1;
     float: left;
   }
  
@@ -98,6 +103,14 @@
     width: 150px;
     height: 180px;
     margin:5px 10px 5px 5px;
+  }
+
+  .searchModel li{
+    width: 100px;
+    height: 40px;
+    border:1px solid #333;
+    padding:8px;
+    float: left;
   }
 
 

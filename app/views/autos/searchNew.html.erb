@@ -8,9 +8,23 @@
     <div id="search-display-bar">
       <p>Seach By</p>
       <div class="search-display-top">
-        <div class="input-line"><div class="search-params"><h1>Make(s)</h1></div></div>
-        <div class="input-line"><div class="search-params"><h1>Model(s)</h1></div></div>
-        <div class="input-line"><div class="search-params"><h1>Years(s)</h1></div></div>        
+        
+        <div class="input-line">
+          <div class="search-params">
+            <h1 ng-hide="searchDetails.length > 0">Make(s)</h1>
+            <h1 ng-repeat="searchDetail in searchDetails">{{searchDetail.make}}</h1></div>
+        </div>
+        
+        <div class="input-line">
+          <div class="search-params">
+            <h1 ng-hide="searchDetails[0].model.length > 0">Model(s)</h1>
+              <h1 ng-repeat="selectedModel in selectedModels">{{selectedModel}}</h1>
+          </div>
+        </div>
+
+
+        <div class="input-line"><div class="search-params"><h1>Years(s)</h1></div></div>
+        <div class=""><button ng-click="getResults()">Search</button></div>        
       </div>
 
 
@@ -39,10 +53,10 @@
         <div class="model-panel" ng-show="showInnerPanel(showOnePanel,showTwoPanel)" ng-init="showInnerPanel(false,false)">
           <p ng-show="modelPanelStatus()">Select a Make to view Models</p>
           <h1>Select Model(s):</h1>
-            <ul class="searchMain">
-              <li ng-repeat="modelName in modelNames" >
-                <a href="#" ng-click="addModelsToSearch(modelName)" ng-mouseover="showPanelTwo(true,modelName)" ng-mouseout="showPanel(false,'')">{{modelName}}</a>
-              </li>
+            <ul class="searchMain searchModel">
+              <a href="#" ng-click="addModelsToSearch(modelName)" ng-mouseover="showPanelTwo(true,modelName)" ng-mouseout="showPanel(false,'')" ng-repeat="modelName in modelNames">
+                <li>{{modelName}}</li>
+              </a>
             </ul>
         </div>
 

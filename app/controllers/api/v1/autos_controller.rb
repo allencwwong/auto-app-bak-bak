@@ -8,6 +8,8 @@ class Api::V1::AutosController < ApplicationController
   end
 
   def create
+    #number of owners 
+    
     @listing = Listing.new(
     auto_maker: params[:auto_maker], 
     auto_model: params[:auto_model],
@@ -29,10 +31,10 @@ class Api::V1::AutosController < ApplicationController
     title: params[:title],
     transmission: params[:transmission],
     style: params[:style],
-    package: params[:package],
+    package: params[:packages],
     doors: params[:doors],
     features: params[:features],
-    option: params[:option]
+    option: params[:options]
     )
 
     if @listing.save

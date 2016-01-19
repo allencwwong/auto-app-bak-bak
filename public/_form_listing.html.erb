@@ -9,6 +9,26 @@ form{
   border-left:2px solid blue;
 }
 
+.base-spec-1{
+  margin:20px 0px;
+  height: 100%;
+}
+
+.option-spec-1{
+  margin:20px 0px;
+  height: 100%;
+}
+
+.option-spec-2{
+  width:220px;
+  margin:5px 0px;
+  padding:0px;
+}
+
+.option-spec-2 input{
+  margin:0 10px 0 0px;
+}
+
 </style>  
 
  
@@ -41,6 +61,25 @@ form{
   <!-- Base + Condition info -->
    <div class="row">
      <div class="form-group">
+
+       <div class="col-xs-12 base-spec-1"> 
+         <div class="col-xs-2">
+          <label>Odometer:</label>  
+          <input type="text" class="form-control" ng-model="selectedOdometer.value">         
+          </div>
+         <div class="col-xs-2 list-desc-info">info</div>
+         
+        <div class="col-xs-3">
+        <label>Vin (Vechicle Id Number):</label>  
+          <input type="text" class="form-control" ng-model="selectedVin.value">
+         </div>
+         <div class="col-xs-4 list-desc-info">
+            <p>Every car or truck since the 1981 model year has a unique 17-digit Vehicle Identification Number (VIN) filled with important details, ranging from its engine type to where it was built. The VIN is like a car's Social Security number</p>
+         </div>
+
+       </div>
+
+
         <div class="col-xs-12"> 
          <div class="col-xs-4">
            <label>Car Condition:</label>
@@ -50,6 +89,7 @@ form{
           <p>info</p>
         </div>
        </div>
+
        
        <div class="col-xs-12"> 
          <div class="col-xs-4">
@@ -58,7 +98,7 @@ form{
          </div>
          <div class="col-xs-7 list-desc-info">info</div>
        </div>
-     </div>
+     </div><!-- end of group -->
    </div>
 
    <!-- Spec info -->  
@@ -130,7 +170,19 @@ form{
 
       <!-- insert color info here -->
 
-      <!-- insert option info here -->                    
+      <div class="col-xs-12 option-spec-1">
+        <h1>{{selectedMake.value}} Features</h1>
+        <span ng-repeat="autoFeature in autoFeatures">
+          <label class="option-spec-2"><input type="checkbox" ng-model="featureSelection.values[autoFeature]">{{autoFeature}}</label>
+        </span>
+      </div> 
+
+      <div class="col-xs-12 option-spec-1">
+      <h1>{{selectedMake.value}} Options</h1>
+        <span ng-repeat="autoOption in autoOptions">
+          <label class="option-spec-2"><input type="checkbox" ng-model="optionSelection.values[autoOption]">{{autoOption}}</label>
+        </span>
+      </div>                    
        
      </div> <!-- end of form group -->
    </div> <!-- end of row -->
@@ -140,32 +192,33 @@ form{
 
 
       <div class="form-group">
+      <div class="col-xs-12">
       <h2>Listing Location</h2>
+          <div class="col-xs-6">
+            <label for="address">Enter Address:</label>
+            <input type="address" class="form-control" id="" ng-model="inputAddress.value" placeholder="Address">
+          </div>
 
-        <div class="col-xs-6">
-          <label for="address">Enter Address:</label>
-          <input type="address" class="form-control" id="" ng-model="inputAddress.value" placeholder="Address">
-        </div>
+          <div class="col-xs-6">
+            <label for="zip">Enter Zip Code:</label>
+            <input type="text" class="form-control" id="" placeholder="Zip Code" ng-model="inputZip.value" >
+          </div>
+      </div>
+      <div class="col-xs-12">    
+          <div class="col-xs-6">  
+            <label for="zip">City</label>
+            <input type="text" class="form-control" placeholder="City" ng-value="zipResults.results[0].address_components[1].long_name">
+          </div>
 
-        <div class="col-xs-6">
-          <label for="zip">Enter Zip Code:</label>
-          <input type="text" class="form-control" id="" placeholder="Zip Code" ng-model="inputZip.value" >
-        </div>
+          <div class="col-xs-6">
+            <label for="zip">State</label>
+            <input type="text" class="form-control" placeholder="State" ng-value="zipResults.results[0].address_components[3].long_name">    
+          </div>
+      </div>
         
-        <div class="col-xs-6">  
-          <label for="zip">City</label>
-          <input type="text" class="form-control" placeholder="City" ng-value="zipResults.results[0].address_components[1].long_name">
-        </div>
-
-        <div class="col-xs-6">
-          <label for="zip">State</label>
-          <input type="text" class="form-control" placeholder="State" ng-value="zipResults.results[0].address_components[3].long_name">    
-        </div>
-
-        
+    </div>
+    </div>
         <button ng-click="addListing()">Submit</button>
-    </div>
-    </div>
       </form>
 
 

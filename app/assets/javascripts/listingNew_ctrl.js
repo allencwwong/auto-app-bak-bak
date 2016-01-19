@@ -56,9 +56,16 @@
     $scope.selectedPackages = {value: ''};
     $scope.selectedDoors = {value: ''};
     $scope.selectedFeatures = {value: ''};
-    $scope.selectedPption = {value: ''};
+    $scope.selectedOptions = {value: ''};
     $scope.inputZip = {value: ''};
     $scope.inputAddress = {value: ''};
+
+    $scope.featureSelection = {
+      values: {}
+    }
+    $scope.optionSelection = {
+      values: {}
+    };
 
     // auto details 
     
@@ -167,22 +174,22 @@
           city: $scope.zipResults.results[0].address_components[3].long_name,
           engine: $scope.selectedEngine.value,
           year: $scope.selectedYear.value,
-          vin: $scope.something.value,
-          odometer: $scope.something.value,
-          condition: $scope.something.value, 
-          engine: $scope.something.value,
-          drive: $scope.something.value,
-          fuel: $scope.something.value,
-          mpg: $scope.something.value,
-          interior_color: $scope.something.value,
-          exterior_color: $scope.something.value,
-          title: $scope.something.value,
-          transmission: $scope.something.value,
-          style: $scope.something.value,
-          packages:$scope.something.value,
-          doors: $scope.something.value,
-          features: $scope.something.value,
-          option: $scope.something.value,
+          vin: $scope.selectedVin.value,
+          odometer: $scope.selectedOdometer.value,
+          condition: $scope.selectedCondition.value, 
+          engine: $scope.selectedEngine.value,
+          drive: $scope.selectedDrive.value,
+          fuel: $scope.selectedFuel.value,
+          mpg: $scope.selectedMpg.value,
+          interior_color: $scope.selectedInterior_color.value,
+          exterior_color: $scope.selectedExterior_color.value,
+          title: $scope.selectedTitle.value,
+          transmission: $scope.selectedTransmission.value,
+          style: $scope.selectedStyle.value,
+          packages:$scope.selectedPackages.value,
+          doors: $scope.selectedDoors.value,
+          features: $scope.selectedFeatures.value,
+          options: $scope.selectedOptions.value,
           status: "active"
         };
         console.log(newListing);
