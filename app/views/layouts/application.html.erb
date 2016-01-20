@@ -42,10 +42,10 @@
                   <nav class="navbar-collapse collapse navHeaderCollapse" role="navigation">
                     <ul class="nav navbar-nav navbar-right">
                       <li class="dropdown dropdown-main">
-                            <a href="/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Home<span class="fa fa-angle-down dropdown-arrow"></span></a>
-                            <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn"><!-- Control Animations by changing "fadeIn" to another property from animate.css, check animations page in features / ALSO dropdown-animation class controls the duration, ajust if need -->
-                                
-                                
+                           
+                            <%= link_to "Dashboard", members_path %>
+                            <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn">
+                            <li></li>
                             </ul>
                           </li>
 
@@ -53,29 +53,45 @@
                      
                       <li class="dropdown dropdown-main">
                            <%= link_to "Search", "autos/searchNew" %>
-  
+                            <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn">
+                            <li></li>
+                            </ul>
                           </li>
                       <li class="dropdown dropdown-main">
                         <% if current_user %>
                             <%= link_to "Post Your Car" , new_member_path %>
+                      <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn">
+                            <li></li>
+                            </ul>
                         <% else %>
                             <%= link_to "Post Your Car" , "http://localhost:3000/users/sign_in" %>
+                    <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn">
+                            <li></li>
+                            </ul>        
                         <% end %>   
                           </li>
+
                       <li class="dropdown dropdown-main">
                         <% if current_user %>
-                            <%= link_to "Sign Out","http://localhost:3000/users/sign_out", method: :delete %>
+                              
+                            <a>Welcome back, <%= current_user.email%></a>
+                            <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn">
+                            <li><%= link_to "Sign Out","http://localhost:3000/users/sign_out", method: :delete %></li>
+                            </ul>
                         <% else %>    
                             <%= link_to "Sign In","http://localhost:3000/users/sign_in" %>
+                      <ul class="dropdown-menu dropdown-subhover dropdown-animation animated fadeIn">
+                            <li></li>
+                            </ul>
                             <% end %>
                        
                          
                           </li>
 
                       <li class="dropdown dropdown-main">
-                         <% if current_user %>
-                            <%= link_to "Dashboard", members_path %>
-                         <% else %>    
+                         <% if current_user = nil %>
+                            
+                             
                             <%= link_to "Register","http://localhost:3000/users/sign_up" %>     
                           <% end %>
                           </li>

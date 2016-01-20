@@ -59,7 +59,7 @@ class AutosController < ApplicationController
 
   def searchNew
     @auto_maker_names = []
-
+         @user = current_user.id
     @auto_makers = AutoMaker.all
     @auto_makers.each do |make|
       @auto_maker_names << make.name

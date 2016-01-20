@@ -9,8 +9,9 @@ class Api::V1::AutosController < ApplicationController
 
   def create
     #number of owners 
-    
+
     @listing = Listing.new(
+    user_id: params[:id],  
     auto_maker: params[:auto_maker], 
     auto_model: params[:auto_model],
     zip_code: params[:zip_code],
@@ -54,6 +55,9 @@ class Api::V1::AutosController < ApplicationController
     years = params[:years]
     all_models = []
     all_makes = []
+    user = params[:id]
+
+
 
     #process search params 
     details.each do |detail|
@@ -70,9 +74,9 @@ class Api::V1::AutosController < ApplicationController
 
 
     #save search history
-    if (current_user)
+    if (user["id"])
       search = Search.new(
-        user_id: current_user.id,
+        user_id: user["id"],
         search_make: all_makes,
         search_model: all_models, 
         search_year: years 

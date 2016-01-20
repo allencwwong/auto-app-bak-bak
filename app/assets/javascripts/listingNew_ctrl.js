@@ -10,7 +10,7 @@
     //  $scope or var camel case
     //  function snake case
 
-  angular.module("app.controllers").controller("listingNewCtrl", function($scope,$http) {
+  angular.module("app.controllers").controller("listingNewCtrl", function($scope,$http,$window) {
 
       $scope.setup = function(){
       $http.get("/api/v1/autos.json").then(function(response){
@@ -162,10 +162,12 @@
         //console.log($scope.autoYears);
       }
 
-      
+      var div = document.getElementById('div-user');
+      $scope.currentUser = {id: div.getAttribute("data-item-current")};
 
       $scope.addListing = function(){
         var newListing = {
+          id: $scope.currentUser.id,
           auto_maker: $scope.selectedMake.value,
           auto_model: '',
           address: $scope.inputAddress.value,
@@ -194,8 +196,9 @@
         };
         console.log(newListing);
         $http.post('/api/v1/autos.json', newListing).then(function(response){
-        console.log("saving!")  
+        console.log("saved!!")
         });
+        $window.location.href = '/members';  
       }
 
 

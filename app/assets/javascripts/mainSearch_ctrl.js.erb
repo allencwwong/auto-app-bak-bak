@@ -338,9 +338,13 @@
         }
       console.log($scope.searchYears);
       }      
-    
+
+      var div = document.getElementById('div-user');
+      $scope.currentUser = {id: div.getAttribute("data-item-current")};
+
     $scope.getResults = function(searchAnchor){
 
+    
      
         for(var i=0;i<$scope.searchDetails.length;i++){
             if($scope.searchDetails[i].model.length < 1){
@@ -348,18 +352,24 @@
             }
           }              
 
+
+      //name: div.getAttribute("data-item-name")
+
       var searchAllParams = {
+        id: $scope.currentUser,
         details: $scope.searchDetails,
         years: $scope.searchYears
       }
+
+      //console.log(searchAllParams);
+
       $http.post("/api/v1/autos/search.json", searchAllParams).then(function(response){
         $scope.searchResults = response.data;
         //console.log($scope.searchResults);
         $scope.returnedResults = compact($scope.searchResults);
       });
 
-      $location.hash(searchAnchor);
-      $anchorScroll();
+ 
 
     }
 

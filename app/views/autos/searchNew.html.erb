@@ -1,5 +1,8 @@
 <div id="search" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
-  <div class="row jumbotron">
+  <% if current_user %>
+  <div id="div-user" data-item-current="<%= @user %>"><%= @user %></div>
+  <% end %>
+  <div class="row jumbotron" data-item-test="allemn">
     
     <div id="main-panel" class="">
 

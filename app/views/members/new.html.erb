@@ -1,6 +1,7 @@
   <div class="container-fluid" ng-controller="listingNewCtrl" ng-init="setup()" >
      
       <div class="row">
+        <div id="div-user" data-item-current="<%= current_user.id %>"></div>
         <div ng-include src="'/_form_listing.html.erb'"></div>
 
     </div>  

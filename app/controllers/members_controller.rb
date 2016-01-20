@@ -1,6 +1,8 @@
 class MembersController < ApplicationController
   def index
     if(current_user)
+
+
       @listings = User.find(current_user.id).listings
       @list_count = @listings.count
 
