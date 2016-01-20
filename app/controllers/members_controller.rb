@@ -37,9 +37,15 @@ class MembersController < ApplicationController
       @search_results = []
 
 
+   
+    @search_model.each_with_index do |item,index|
+        new_hash = {}
+        new_hash[:make] = @search_make[index]
+        new_hash[:model] = @search_model[index]
+        new_hash[:year] = @search_year[index]
+        @search_results.push(new_hash)
+    end
 
-      puts @search_results
-       
 
 
     else redirect_to '/'

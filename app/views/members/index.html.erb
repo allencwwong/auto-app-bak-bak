@@ -65,9 +65,12 @@
           <th>Searched Year(s)</th>
         </tr>
 
-      <% @search_model.each do |sm| %>
+         <!--  <td><%= @search_results %></td> -->
+      <% @search_results.each do |result| %>
         <tr>
-          <td><%= sm %></td>
+          <td><%= result[:make] %></td>
+          <td><%= result[:model] %></td>
+          <td><%= result[:year] %></td>
         </tr>
       <% end %>
 
