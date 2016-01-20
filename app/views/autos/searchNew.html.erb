@@ -1,8 +1,6 @@
-
-
 <div id="search" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
   <div class="row jumbotron">
-
+    
     <div id="main-panel" class="">
 
     <div id="search-display-bar">
@@ -23,9 +21,16 @@
         </div>
 
 
-        <div class="input-line"><div class="search-params"><h1>Years(s)</h1></div></div>
-        <div class=""><button ng-click="getResults()">Search</button></div>        
-      </div>
+        <div class="input-line">
+            <div class="search-params">
+              <h1 ng-hide="searchYears.length > 0">Years(s)</h1>
+             <h1 ng-repeat="searchYear in searchYears">{{searchYear}}</h1> 
+            </div>
+        </div>
+        
+
+        <button ng-click="getResults(searchResults)">Search</button></div>        
+
 
 
     </div>
@@ -43,16 +48,16 @@
       </div>
       <!-- end of make panel -->
         <div class="desc-panel-one" ng-show="showOnePanel">
-          <h2>{{showDescription}}</h2>
+          <p class="description-text">{{showDescription}}</p>
         </div> <!-- view 1 -->  
 
         <div class="desc-panel-two" ng-show="showTwoPanel">
-          <p>{{showDescription}}</p>
+          <p class="description-text">{{showDescription}}</p>
         </div>
 
         <div class="model-panel" ng-show="showInnerPanel(showOnePanel,showTwoPanel)" ng-init="showInnerPanel(false,false)">
+          <h1 class="">Select Model(s):</h1>
           <p ng-show="modelPanelStatus()">Select a Make to view Models</p>
-          <h1>Select Model(s):</h1>
             <ul class="searchMain searchModel">
               <a href="#" ng-click="addModelsToSearch(modelName)" ng-mouseover="showPanelTwo(true,modelName)" ng-mouseout="showPanel(false,'')" ng-repeat="modelName in modelNames">
                 <li>{{modelName}}</li>
@@ -110,28 +115,30 @@
 
 
 
-  <!--##### SEARCH RESULTS ######-->
-    <div> Search Results</div>
 
-    <table class="table table-hover">
-      <tbody ng-repeat="returnResult in returnedResults">
-        
-        <tr ng-repeat="returnResultData in returnResult">
-          <td><a href="/autos/{{returnResultData.id}}">{{returnResultData.id}}</a></td>
-          <td>{{returnResultData.auto_maker}}</td>
-          <td>{{returnResultData.auto_model}}</td>
-          <td>{{returnResultData.year}}</td>
-          <td>{{returnResultData.condition}}</td> 
-        </tr>                      
-      </tbody>  
-    </table>
+  
+
+      <table class="table table-hover searchResults">
+      <div class="search-title searchResults"><h1>Search Results</h1></div>
+        <tbody ng-repeat="returnResult in returnedResults">
+
+          <tr ng-repeat="returnResultData in returnResult">
+            <td><a href="/autos/{{returnResultData.id}}">{{returnResultData.id}}</a></td>
+            <td>{{returnResultData.auto_maker}}</td>
+            <td>{{returnResultData.auto_model}}</td>
+            <td>{{returnResultData.year}}</td>
+            <td>{{returnResultData.condition}}</td> 
+          </tr>                      
+        </tbody>  
+      </table>
+
+
   </div> <!-- end of jumbo -->
+  <!--##### SEARCH RESULTS ######-->
 </div> <!-- end of container -->
 
 
-<script type="text/javascript">
 
-</script>
 
 
 

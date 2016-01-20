@@ -4,7 +4,7 @@
   //  angular.module("app", []).controller((){});
   //  }());
 
-  angular.module("app.controllers").controller("mainSearchCtrl", function($scope,$http) {
+  angular.module("app.controllers").controller("mainSearchCtrl", function($scope,$http,$location,$anchorScroll) {
 
     // =====naming convention====== 
     //  $scope or var camel case
@@ -309,19 +309,19 @@
           console.log($scope.searchDetails[0].model);          
           delete_search_model(model,$scope.searchDetails);
           console.log($scope.searchDetails[0].model);
-          //var modelIndex = $scope.selectedModels.indexOf(model);
-          //$scope.selectedModels.splice(modelIndex,1);          
+          var modelIndex = $scope.selectedModels.indexOf(model);
+          $scope.selectedModels.splice(modelIndex,1);          
           //console.log("delete search model");
           //console.log($scope.selectedModels);
         }
         else{
           add_new_model(model,$scope.searchDetails);
           console.log($scope.searchDetails[0].model);
-          //console.log($scope.selectedModels);
-          //console.log($scope.searchDetails);          
-          //$scope.selectedModels.push(model);
-          //$scope.selectedModels = unique($scope.selectedModels);
-          //console.log("added search model");
+          console.log($scope.selectedModels);
+          console.log($scope.searchDetails);          
+          $scope.selectedModels.push(model);
+          $scope.selectedModels = unique($scope.selectedModels);
+          console.log("added search model");
         }
       }
 
@@ -339,7 +339,7 @@
       console.log($scope.searchYears);
       }      
     
-    $scope.getResults = function(){
+    $scope.getResults = function(searchAnchor){
 
      
         for(var i=0;i<$scope.searchDetails.length;i++){
@@ -358,9 +358,9 @@
         $scope.returnedResults = compact($scope.searchResults);
       });
 
-      // $http.post('/api/v1/autos.json', newListing).then(function(response){
-      //   console.log("saving!")  
-      //   });
+      $location.hash(searchAnchor);
+      $anchorScroll();
+
     }
 
     function compact(array) {
