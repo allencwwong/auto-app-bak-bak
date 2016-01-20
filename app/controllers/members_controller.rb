@@ -1,6 +1,50 @@
 class MembersController < ApplicationController
   def index
-    @listings = User.find_by(id: current_user.id).listings
+    if(current_user)
+      @listings = User.find(current_user.id).listings
+      @list_count = @listings.count
+
+      user_searches = User.find(current_user.id).searches
+
+      @search_model = [];
+      @search_make = []
+      @search_year = [];
+
+      user_searches.each do |search|
+        if search.search_make
+          search_1 = search.search_make.gsub(/[""]/,'')
+          search_2 = search_1.gsub(/"|\[|\]/, '')
+          @search_make << search_2.to_s
+
+        end
+      end
+
+      user_searches.each do |search|
+        search_1 = search.search_model.gsub(/[""]/,'')
+        search_2 = search_1.gsub(/"|\[|\]/, '')
+        @search_model << search_2.to_s
+
+      end    
+
+      user_searches.each do |search|
+        if search.search_year
+          search_1 = search.search_year.gsub(/[""]/,'')
+          search_2 = search_1.gsub(/"|\[|\]/, '')
+          @search_year << search_2.to_s
+        end  
+      end
+
+      @search_results = []
+
+
+
+      puts @search_results
+       
+
+
+    else redirect_to '/'
+     end 
+  
   end
 
   def show

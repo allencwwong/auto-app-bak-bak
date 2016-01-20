@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions" }
+  #get '/users', to: 'members#index', as: :user_root # creates user_root_path
   root to: 'autos#index'
   get '/autos/searchNew', to: 'autos#searchNew'
   get '/autos/search', to: 'autos#search'

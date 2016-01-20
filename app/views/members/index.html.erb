@@ -1,10 +1,81 @@
+<style type="text/css">
+.numberCircle {
+    border-radius: 10%;
+
+    width: 50px;
+    height: 25px;
+    padding: 3px;
+    margin:5px 10px;
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+    float:left;
+    font: 16px Arial, sans-serif;
+}  
+.title-header h2{
+  display: inline;
+  float: left;
+}
+
+#listings {
+  cursor: pointer;
+}
+</style>
+  
   <% if current_user  %>
   <div class="container-fluid">
     <div class="row">    
       <h1>Welcome back, <%= current_user.email%></h1>
-      <% @listings.each do |list| %>
-      <%= list.auto_maker%>
+      
+      <div class="col-xs-12">
+        <div class="title-header">
+          <h2>My Listings</h2>
+          <div class="numberCircle"><%= @list_count %></div>
+        </div>
+
+        <table id="listings" class="table table-hover">
+          <tr>  
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Status</th>
+          </tr>
+            <% @listings.each do |list| %>
+          <tr>  
+            <td><%= link_to(list.auto_maker, edit_member_path(list.id)) %></a></td>
+            <td><%= list.auto_model %></td>
+            <td><%= list.year %></td>
+            <td><%= list.status %></td>
+          </tr>  
+            <% end %>
+
+        </table>
+      </div>
+
+    <div class="col-xs-12">
+      <div class="title-header">
+      <h2>Search History</h2>
+        <div class="numberCircle"><%= @search_model.count %></div>
+      </div>
+      <table class="table">
+        <tr>
+          <th>Searched Make(s)</th>
+          <th>Searched Model(s)</th>
+          <th>Searched Year(s)</th>
+        </tr>
+
+      <% @search_model.each do |sm| %>
+        <tr>
+          <td><%= sm %></td>
+        </tr>
       <% end %>
+
+      </table>
+    </div>
+
+
+
     </div>
   </div>
 
@@ -13,3 +84,19 @@
     window.location.href="/"  
   </script>
   <% end %>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $('#listings tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+</script>
+
+
