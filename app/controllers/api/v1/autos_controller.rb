@@ -49,14 +49,11 @@ class Api::V1::AutosController < ApplicationController
     
     #puts models = params[:details][0][:model]
 
-
-
     details = params[:details]
     years = params[:years]
     all_models = []
     all_makes = []
     user = params[:id]
-
 
 
     #process search params 
@@ -102,6 +99,19 @@ class Api::V1::AutosController < ApplicationController
       end
     end
     render json: returned_models
+
+
+
+  end
+
+  def searchByMake
+    @test = "allenwong"
+    maker = params[:maker]
+
+    returned_makeListings = []
+    returned_makeListings = Listing.where("auto_maker = ?",maker)
+    render json: returned_makeListings
+
   end
 
 end

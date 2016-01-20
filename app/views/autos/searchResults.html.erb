@@ -1,0 +1,90 @@
+<style type="text/css">
+  #map-canvas{
+    height:500px;
+    width:65%;
+    float:right;
+    clear:none;
+  }
+  #markers{
+    float:right;
+    width:35%;
+    clear:none;
+  }
+  .listingDetails h1{
+    font-size:14px;
+    margin:0px;
+    padding:0px;
+  }
+  .marker-link{
+    display:block;
+  }
+  .marker-link h1{
+   font-size:14px;
+    margin:2px;
+    padding:5px;
+    float:left;
+    clear:right;
+  }
+  .marker-link p{
+   font-size:12px;
+    margin:2px;
+    padding:5px;
+   display: inline;
+   float:left;
+
+  }
+  .marker-link img{
+    width: 100px;
+    float: left;
+  }
+  .make-select{
+    float:left;
+    margin:10px 10px;
+  }
+</style>
+<div id="index" class="container-fluid" ng-controller="searchByMakeCtrl">
+
+<div class="row">
+  <h2 class="make-select">Search By Make:</h2>                      
+
+        <a class="btn btn-social-icon btn-twitter btn-lg make-select">
+            <i class="fa fa-twitter" ng-click="getResults('Acura')">Acura</i>
+        </a>
+        <a class="btn btn-social-icon btn-instagram btn-lg make-select">
+            <i class="fa fa-instagram" ng-click="getResults('Bmw')">Bmw</i>
+        </a>
+        <a class="btn btn-social-icon btn-facebook btn-lg make-select">
+            <i class="fa fa-facebook" ng-click="getResults('Chevy')">Chevy</i>
+        </a>
+        <a class="btn btn-social-icon btn-vimeo btn-lg make-select">
+            <i class="fa fa-vimeo-square" ng-click="getResults('Dodge')">Dodge</i>
+        </a>
+        <a class="btn btn-social-icon btn-linkedin btn-lg make-select">
+            <i class="fa fa-linkedin" ng-click="getResults('Ford')">Ford</i>
+        </a>
+        <a class="btn btn-social-icon btn-google-plus btn-lg make-select">
+            <i class="fa fa-google-plus" ng-click="getResults('GMC')">GMC</i>
+        </a>
+</div>
+
+  <div class="row">
+
+<div id="map-canvas"></div>
+<table id="markers" class="table table-hover">
+
+</table>
+
+ 
+  </div>
+</div>
+
+
+
+   
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+<script type="text/javascript">
+  
+
+</script>

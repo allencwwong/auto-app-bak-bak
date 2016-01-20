@@ -1,76 +1,53 @@
-<style type="text/css">
-  #map-canvas{
-    height:700px;
-    width:65%;
-    float:right;
-    clear:none;
-  }
-  #markers{
-    float:right;
-    width:100%;
-    clear:none;
-    height: 700px !important;
-    overflow: scroll !important;
-  }
-  #markers table{
-    height:700px !important;
-    overflow: scroll !important;
-  }
-  .listingDetails h1{
-    font-size:14px;
-    margin:0px;
-    padding:0px;
-  }
-  .marker-link{
-    display:block;
-  }
-  .marker-link h1{
-   font-size:14px;
-    margin:2px;
-    padding:5px;
-    float:left;
-    clear:right;
-  }
-  .marker-link p{
-   font-size:12px;
-    margin:2px;
-    padding:5px;
-   display: inline;
-   float:left;
+(function () {
+      "use strict"; 
+  angular.module("app.controllers").controller("searchByMakeCtrl", function($scope,$http,$window) {
 
-  }
-  .marker-link img{
-    width: 100px;
-    float: left;
-  }
+    // =====naming convention====== 
+    //  $scope or var camel case
+    //  function snake case
+    $scope.allen = "allen cw wong";
 
-  .scroll{
-    width:35%;
-    height:700px !important;
-    overflow: auto !important;    
-  }
-</style>
-<div id="index" class="container-fluid">
+    $scope.getResults = function(make){
+      console.log(make)
+      var search = {maker: make};
+      $http.post("/api/v1/autos/searchByMake.json", search).then(function(response){
+        $scope.searchResults = [];
+        $scope.searchResults = response.data;
+        //$window.location.href = 'http://localhost:3000/autos/search-results';  
+        $scope.initialize();
+        store_returned_data($scope.searchResults);
+        $scope.initialize();
+        console.log($scope.hide);
+        console.log($scope.searchResults);
 
-  <div class="row">
+      });
+    }
 
-<div id="map-canvas"></div>
-<div class="scroll">
-<table id="markers" class="table table-hover">
-</table>
-</div>
- 
-  </div>
-</div>
+        
+    var listingIds = [];
+    var listingTitles = [];
+    var listing_zip = [];
+    var listing_details = [];
+    var listing_photos_url = [];
+    var lat = [];
+    var lng = [];
+    var listingIds = [];
+    function store_returned_data(){
+
+      for(var i =0;i<$scope.searchResults.length;i++){
+         listingIds[i] = $scope.searchResults[i].id;
+         listing_zip[i] = $scope.searchResults[i].zip_code;
+         lat[i] = $scope.searchResults[i].lat;
+         lng[i] = $scope.searchResults[i].lng;
+         listingTitles[i] = $scope.searchResults[i].auto_maker + " " + $scope.searchResults[i].auto_model;
+         listing_details[i] = listingTitles[i];
+         listing_photos_url[i] = "0";
+      }
+    }
+
+    $scope.initialize = function() {
 
 
-
-   
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
-<script type="text/javascript">
-function initialize() {
 
     var markers = new Array();
 
@@ -96,16 +73,17 @@ function initialize() {
     var locations = [];
     
     // var listingLatLng = <%= @alisting_coordinates %>;
-    var listingTitles = <%= raw @listing_titles %>;
+    // var listingTitles = <%= raw @listing_titles %>;
+
     //var lisintgDetails = <%= raw @listing_titles %>;
-    var listingIds = <%= @listing_ids %>
+    // var listingIds = <%= @listing_ids %>
 
     // console.log(allLatLng);
-    var lat = <%= @listing_lat %>;
-    var lng = <%= @listing_lng %>;
+    // var lat = <%= @listing_lat %>;
+    // var lng = <%= @listing_lng %>;
 
-    var listing_photos_url = <%= raw @listing_photos_url %>;
-    var listing_zip = <%= raw @listing_details %>;
+    // var listing_photos_url = <%= raw @listing_photos_url %>;
+    // var listing_zip = <%= raw @listing_details %>;
     //console.log(listing_photos_url);
 
     for(var i = 0; i < listingTitles.length; i++){
@@ -162,8 +140,13 @@ function initialize() {
         google.maps.event.trigger(markers[$(this).data('markerid')], 'mouseover');
         console.log("clicked")
     });
+
 }
 
-initialize();  
 
-</script>
+
+        window.$scope = $scope;
+  
+
+  });
+})();    

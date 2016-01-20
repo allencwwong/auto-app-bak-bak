@@ -74,6 +74,11 @@ class AutosController < ApplicationController
     @makes = CarMaker.all
   end
 
+  def searchResults
+    @testing = 10000
+    puts "====== TESTING ======="
+  end
+
 
 
 end # end of class

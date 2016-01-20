@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: 'autos#index'
   get '/autos/searchNew', to: 'autos#searchNew'
   get '/autos/search', to: 'autos#search'
+  get 'autos', to: 'autos#searchByMake'
+  get 'autos/search-results', to: 'autos#searchResults'
   # /autos/home to autos#home
   resources :autos
   resources :members
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'autos/search', to: 'autos#search'
+      post 'autos/searchByMake', to: 'autos#searchByMake'      
       resources :autos
     end
   end

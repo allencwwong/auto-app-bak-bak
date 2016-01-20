@@ -43,36 +43,115 @@
       </ol>
     </div> 
     
-    <div class="auto-infoBar">
-      <div class="infoBar-section"><h2>Price:</h2><sup>$</sup><h1><%= @listing.price %></h1></div>
-      <div class="infoBar-section"><h2>Title:</h2><h1><%= @listing.title %></h1></div><div class="infoBar-section"><h2>Ordmeter:</h2><h1><%= @listing.price %></h1></div>
+    <div class="auto-infoBar col-xs-12">
+      <div class="infoBar-section col-xs-2"><h2>Price:</h2><sup>$</sup><h1><%= @listing.price %></h1></div>
+      <div class="infoBar-section col-xs-2"><h2>Title:</h2><h1><%= @listing.title %></h1></div>
+      <div class="infoBar-section col-xs-2"><h2>Ordmeter:</h2><h1><%= @listing.price %></h1></div>
+      <div class="infoBar-section col-xs-2"><h2>Condition:</h2><h1><%= @listing.condition %></h1></div>
+      <div class="infoBar-section col-xs-2"><h2>Door:</h2><h1><%= @listing.doors %></h1></div>
+      <div class="infoBar-section col-xs-2"><h2>Drive Type:</h2><h1><%= @listing.drive %></h1></div>                  
     </div>
     
-    <div id="main-content" class="col-md-12">
+    <div id="main-content" class="col-xs-12">
  
             <ul class="auto-list">
-              <div class="list-set">
+              <div class="list-set col-xs-12">
 
-                <li class="list-heading">Make</li>
-                <li class="alt list-content"><%= @listing.auto_maker.capitalize %></li>
+                <li class="list-heading col-xs-4">Make</li>
+                <li class="alt list-content col-xs-7"><%= @listing.auto_maker.capitalize %></li>
             
-                <li class="list-heading">Model</li>
-                <li class="alt list-content"><%= @listing.auto_model.capitalize %></li>
+                <li class="list-heading col-xs-4">Model</li>
+                <li class="alt list-content col-xs-7"><%= @listing.auto_model.capitalize %></li>
 
-                <li class="list-heading">Year</li>
-                <li class="alt list-content"><%= @listing.year %></li>
+                <li class="list-heading col-xs-4">Year</li>
+                <li class="alt list-content col-xs-7"><%= @listing.year %></li>
+            
+                <h2 class="heading-1">Description</h2>
+                <p class="col-xs-12"><%= @listing.description %></p>
               </div>                
             </ul>
 
 
-        <div id="listing-info">
-          <div id="contact-info">Contact Info</div>
-          <div id="description">Description</div>
-        </div>   
  
+      <div id="auto-features">
+                    <ul class="auto-list auto-list-bg">
+                <h2 class="heading-1">Features + Specs</h2>
+              <div class="list-set col-xs-12">
+                <li class="list-heading col-xs-5">Vin</li>
+                <li class="alt list-content col-xs-6"><%= @listing.vin %></li>
+            
+                <li class="list-heading col-xs-5">Engine</li>
+                <li class="alt list-content col-xs-6"><%= @listing.engine.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Fuel</li>
+                <li class="alt list-content col-xs-6"><%= @listing.fuel.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Mpg</li>
+                <li class="alt list-content col-xs-6"><%= @listing.mpg %></li>
+
+                <li class="list-heading col-xs-5">Interior Color</li>
+                <li class="alt list-content col-xs-6"><%= @listing.interior_color.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Exterior Color</li>
+                <li class="alt list-content col-xs-6"><%= @listing.exterior_color.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Transmission</li>
+                <li class="alt list-content col-xs-6"><%= @listing.transmission.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Style</li>
+                <li class="alt list-content col-xs-6"><%= @listing.style.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Features</li>
+                <li class="alt list-content col-xs-6"><%= @listing.features.capitalize %></li>
+
+                <li class="list-heading col-xs-5">Options</li>
+                <li class="alt list-content col-xs-6"><%= @listing.option.capitalize %></li>
+
+                                                                
+              </div>
+            </ul>
+      </div>
+
+        <div id="listing-info">
+          <h2 class="heading-1">Contact Info</h2>
+          <div id="contact-info" class="col-xs-12">
+            <ul class="contact-info col-xs-12">
+              <li class="col-xs-3">Name:</li>
+              <li class="col-xs-7"></li>
+              <li class="col-xs-3">Email:</li>
+              <li class="col-xs-7"><%= @listing.user.email %></li>
+              <li class="col-xs-3">Phone:</li>
+              <li class="col-xs-7"></li>              
+            </ul>
+          </div>
+          <div id="location"><div id="map"></div></div>
+        </div>
+
     </div>
 
-      <div id="auto-features">features</div>
  
    </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+    <script>
+      var map;
+      var lat = <%= @listing.lat %>;
+      var lng = <%= @listing.lng %>;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 123.1, lng: 112},
+          zoom: 8
+        });
+      }
+
+      initMap();
+    </script>
+
+
+
+
+
+
+
   </div> <!-- end of container -->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119041109) do
+ActiveRecord::Schema.define(version: 20160120134141) do
 
   create_table "auto_makers", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20160119041109) do
   create_table "listings", force: :cascade do |t|
     t.string   "auto_maker",     limit: 255
     t.string   "auto_model",     limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "zip_code",       limit: 255
     t.string   "address",        limit: 255
     t.string   "state",          limit: 255
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 20160119041109) do
     t.integer  "price",          limit: 4
     t.string   "status",         limit: 255
     t.string   "user_id",        limit: 255
+    t.string   "number_owned",   limit: 255
+    t.text     "description",    limit: 65535
   end
 
   create_table "photos", force: :cascade do |t|
