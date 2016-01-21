@@ -24,6 +24,8 @@
       create_auto_years(1980);
     }
 
+    console.log($scope.autoMakeByModels);
+    console.log($scope.autoCollections);
     //autoCollections
     /* 
 

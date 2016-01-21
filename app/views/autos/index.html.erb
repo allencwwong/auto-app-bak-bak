@@ -113,7 +113,7 @@ function initialize() {
     var displayListingTitle = "<img src='" + listing_photos_url[i] + "'><h1>" + listingTitles[i] + "</h1><br><p>" + listing_zip[i] + "</p>";
 
       
-    var displaylistingDetail = "<a class='listingDetails' href='autos/" + listingIds[i] + "'/><h1>" + listingTitles[i] + "</h1></a>";  
+    var displaylistingDetail = "<a class='listingDetails' href='/autos/" + listingIds[i] + "'/><h1>" + listingTitles[i] + "</h1></a>";  
 
     locations[i] = [new google.maps.LatLng({lat:lat[i],lng:lng[i]}), displayListingTitle , displaylistingDetail]; 
     }
@@ -128,7 +128,7 @@ function initialize() {
     for (var i = 0; i < locations.length; i++) {
 
         // Append a link to the markers DIV for each marker
-        $('#markers').append('<tr><td><a class="marker-link" data-markerid="' + i + '" href="autos/' + listingIds[i] + '">' + locations[i][1] + '</a></td></tr> ');
+        $('#markers').append('<tr><td><a class="marker-link" data-markerid="' + i + '" href="/autos/' + listingIds[i] + '">' + locations[i][1] + '</a></td></tr> ');
 
         // select #markers add <tr><td><a class="marker-link" data-markerid=i" href="autos">location</a></td></tr>
 
