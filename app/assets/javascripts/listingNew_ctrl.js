@@ -119,14 +119,16 @@
 
 
     $scope.$watch('inputZip.value.length', function(newInput,oldInput){
-      if(newInput == 5){
+      if(newInput == 5 && $scope.inputAddress.value != '' ){
         //alert("working!");
 
-    
-      $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.inputZip.value+'&sensor=true').then(function (response) {
-      $scope.zipResults = response.data;
-      console.log($scope.selectedMake.value);
-      console.log($scope.selectedEngine.value);
+        console.log("inside watch get geocode!")
+      $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.inputAddress+"+"+$scope.inputZip.value+'&sensor=true').then(function (response) {
+      $scope.geocodingResults = response.data;
+      
+      console.log($scope.geocodingResults);
+      //console.log($scope.geocodeResults.results.[0].geometry);
+      //console.log($scope.selectedEngine.value);
   });
       }
     });
@@ -172,8 +174,10 @@
           auto_model: '',
           address: $scope.inputAddress.value,
           zip_code: $scope.inputZip.value,
-          state: $scope.zipResults.results[0].address_components[1].long_name,
-          city: $scope.zipResults.results[0].address_components[3].long_name,
+          state: $scope.geocodingResults.results[0].address_components[2].long_name,
+          city: $scope.geocodingResults.results[0].address_components[1].long_name,
+          lat: $scope.geocodingResults.results[0].geometry.location.lat,
+          lng: $scope.geocodingResults.results[0].geometry.location.lng,
           engine: $scope.selectedEngine.value,
           year: $scope.selectedYear.value,
           vin: $scope.selectedVin.value,
@@ -201,6 +205,13 @@
         $window.location.href = '/members';  
       }
 
+      // $scope.getLatLng = function(){
+      //   $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ $scope.'+' $scope.inputZip.value'&key=AIzaSyB_uSXhQhTSC6e5vN0lRYqsMkosb5yrIdM').then(function(response){
+      //   $scope.geocodeResults = response.data;
+      //   });
+      // }
+
+//'https://maps.googleapis.com/maps/api/geocode/json?address='+ {{address}} + '&key=AIzaSyB_uSXhQhTSC6e5vN0lRYqsMkosb5yrIdM'
 
         window.$scope = $scope;
   

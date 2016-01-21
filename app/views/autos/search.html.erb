@@ -1,22 +1,88 @@
-
-<style>
-  .selected{
-    background:yellow;
-  }
-</style>
-
-<div id="home" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
-  <div class="row jumbotron">
-    <uib-tabset>
+<div id="search" class="container-fluid " ng-controller="mainSearchCtrl" ng-init="setup()">
+  <% if current_user %>
+  <div id="div-user" data-item-current="<%= @user %>"><%= @user %></div>
+  <% end %>
+  <div class="row jumbotron" data-item-test="allemn">
     
-      <uib-tab heading="Vertical 1" active="true">
-        <div>Search All Cars make by <span ng-repeat="searchDetail in searchDetails">{{searchDetail.make}} </span> model <span ng-repeat="searchDetail in searchDetails">{{searchDetail.model}}</span> from <span ng-repeat="searchYear in searchYears">{{searchYear}}</div>
+    <div id="main-panel" class="">
+
+    <div id="search-display-bar">
+      <h3>Seach By</h3>
+      <div class="search-display-top">
         
-        <uib-tabset vertical="true">
+        <div class="input-line">
+          <div class="search-params">
+            <h1 ng-hide="searchDetails.length > 0">Make(s)</h1>
+            <h1 ng-repeat="searchDetail in searchDetails">{{searchDetail.make}}</h1></div>
+        </div>
+        
+        <div class="input-line">
+          <div class="search-params">
+            <h1 ng-hide="searchDetails[0].model.length > 0">Model(s)</h1>
+              <h1 ng-repeat="selectedModel in selectedModels">{{selectedModel}}</h1>
+          </div>
+        </div>
 
-          <uib-tab heading="inside 1" class="tab-header" >
 
-              <div class="tab-content-inner">  
+        <div class="input-line">
+            <div class="search-params">
+              <h1 ng-hide="searchYears.length > 0">Years(s)</h1>
+             <h1 ng-repeat="searchYear in searchYears">{{searchYear}}</h1> 
+            </div>
+        </div>
+        
+
+        <button ng-click="getResults(searchResults)" class="btn-lg btn-primary btn-search">Search</button></div>        
+
+
+
+    </div>
+    
+      <div class="make-panel">
+           <ul class="searchMain"> 
+              <h1>Select Make(s):</h1>
+              <li ng-repeat="autoMaker in autoMakers">
+                <div class="autoMakeSet" ng-mouseover="showPanel(true,autoMaker.make_name)" ng-mouseout="showPanel(false,autoMaker.make_name)" ng-click="addMakesToSearch(autoMaker.make_name)" ng-class="{hover: hover}" 
+    ng-mouseenter="hover = true"
+    ng-mouseleave="hover = false">
+                  <a href="#"><img src="{{autoMaker.logo}}"></a>
+                  <a href="#"><p>{{autoMaker.make_name}}</p></a>
+                </div>  
+              </li>
+           </ul>         
+      </div>
+      <!-- end of make panel -->
+        <div style="opacity:0;" class="desc-panel-one" ng-show="showOnePanel" ng-class="{fade: showOnePanel}" >
+          <p class="description-text">{{showDescription}}</p>
+        </div> <!-- view 1 -->  
+
+        <div style="opacity:0;" class="desc-panel-two" ng-show="showTwoPanel" ng-class="{fade: showTwoPanel}">
+          <p class="description-text">{{showDescription}}</p>
+        </div>
+
+        <div class="model-panel" ng-show="showInnerPanel(showOnePanel,showTwoPanel)" ng-init="showInnerPanel(false,false)" ng-class="{fade-out: showOnePanel,fade: showInnerPanel()}">
+          <h1 class="">Select Model(s):</h1>
+          <div ng-show="modelPanelStatus()" class="model-panel-locked"><p>Select a Make to view Models</p><img src="/assets/theme/car-lock.png"></div>
+            <ul class="searchMain searchModel">
+              <a href="#" ng-click="addModelsToSearch(modelName)" ng-mouseover="showPanelTwo(true,modelName)" ng-mouseout="showPanel(false,'')" ng-repeat="modelName in modelNames">
+                <li>{{modelName}}</li>
+              </a>
+            </ul>
+        </div>
+
+        <div class="year-panel" ng-show="showInnerPanelYear(showOnePanel,showTwoPanel)" ng-init="showInnerPanelYear(false,false)">
+          <h1 class="year-panel-h1">Select Year(s):</h1>
+          <div ng-show="modelPanelStatus()" class="year-panel-locked"><p>Select a Make to view Years</p><img src="/assets/theme/calander-icon.png" height="200px"></div>
+          <ul class="searchContent-year">
+            <li ng-repeat="autoYear in autoYearList" ng-click="addYearToSearch(autoYear)" class="searchContent-year"><a href="#">{{autoYear}}</a></li>
+          </ul>          
+        </div>
+
+    </div> <!-- end of main panel -->
+
+<!--         <div>Search All Cars make by <span ng-repeat="searchDetail in searchDetails">{{searchDetail.make}} </span> model <span ng-repeat="searchDetail in searchDetails">{{searchDetail.model}}</span> from <span ng-repeat="searchYear in searchYears">{{searchYear}}</div>
+        
+
                  <ul class="searchMain"> 
                     <li ng-repeat="autoMaker in autoMakers">
                       <div class="autoMakeSet" ng-click="addMakesToSearch(autoMaker.make_name)" ng-class="">
@@ -30,10 +96,7 @@
                  </div>
               </div> 
 
-          </uib-tab>
-          
-          <uib-tab heading="inside 2" class="tab-header">
-            <div class="tab-content-inner">  
+
             
               <ul class="searchMain">
                 <li ng-repeat="modelName in modelNames"><a href="#" ng-click="addModelsToSearch(modelName)">{{modelName}}</a></li>
@@ -44,45 +107,45 @@
               </div>          
             
             </div>
-          </uib-tab>  
 
-          <uib-tab heading="inside 3" class="tab-header">
             <div class="tab-content-inner">
               <ul class="searchContent-year">
                 <li ng-repeat="autoYear in autoYearList track by $index" ng-click="addYearToSearch(autoYear)" class="searchContent-year"><a href="#">{{autoYear}}</a></li>
               </ul>
-            </div>
-          </uib-tab>   
+            </div> 
+    <button ng-click="getResults()">Search</button> -->
+
 
        
-        </uib-tabset> <!-- end of inner tabset -->
-      </uib-tab> <!-- end of first outter tab --> 
 
-      <uib-tab heading="Vertical 2" >
-        Vertical content 2
-      </uib-tab>
-    </uib-tabset>
-    <button ng-click="getResults()">Search</button>
-    <div> Search Results</div>
-    <table class="table table-hover">
-      <tbody ng-repeat="returnResult in returnedResults">
-        
-        <tr ng-repeat="returnResultData in returnResult">
-          <td><a href="/autos/{{returnResultData.id}}">{{returnResultData.id}}</a></td>
-          <td>{{returnResultData.auto_maker}}</td>
-          <td>{{returnResultData.auto_model}}</td>
-          <td>{{returnResultData.year}}</td>
-          <td>{{returnResultData.condition}}</td> 
-        </tr>                      
-      </tbody>  
-    </table>
+
+
+
+
+
+  
+
+      <table class="table table-hover searchResults">
+      <div class="search-title searchResults"><h1>Search Results</h1></div>
+        <tbody ng-repeat="returnResult in returnedResults">
+
+          <tr ng-repeat="returnResultData in returnResult">
+            <td><a href="/autos/{{returnResultData.id}}">{{returnResultData.id}}</a></td>
+            <td>{{returnResultData.auto_maker}}</td>
+            <td>{{returnResultData.auto_model}}</td>
+            <td>{{returnResultData.year}}</td>
+            <td>{{returnResultData.condition}}</td> 
+          </tr>                      
+        </tbody>  
+      </table>
+
+
   </div> <!-- end of jumbo -->
+  <!--##### SEARCH RESULTS ######-->
 </div> <!-- end of container -->
 
 
-<script type="text/javascript">
 
-</script>
 
 
 

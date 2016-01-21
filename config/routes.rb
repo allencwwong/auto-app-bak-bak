@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'autos#index'
   get '/autos/searchNew', to: 'autos#searchNew'
   get '/autos/search', to: 'autos#search'
-  get 'autos', to: 'autos#searchByMake'
+  #get 'autos', to: 'autos#searchByMake'
   get 'autos/search-results', to: 'autos#searchResults'
   # /autos/home to autos#home
   resources :autos

@@ -263,7 +263,7 @@
       function show_car_years(start_year,selected){
         if(selected){
           var current_year = new Date().getFullYear();
-            for(var i=start_year;i < current_year;i++){
+            for(var i=current_year;i > start_year;i--){
             $scope.autoYearList.push(i);
             }
             //console.log("show years!");
@@ -283,12 +283,14 @@
        if (add_new_car(make, $scope.searchDetails) === 0){
           delete_existing_car(make,$scope.searchDetails);
           delete_existing_models(make,$scope.modelNames);
+          $scope.selectedMakeStyle = false;
        }
        else{
           add_new_car(make, $scope.searchDetails);
           show_car_models($scope.searchDetails);
           console.log("added new car and show models");
           //console.log($scope.searchDetails);
+          $scope.selectedMakeStyle = true;
           console.log($scope.modelNames);
        }
           show_make_description(make);

@@ -29,6 +29,14 @@ form{
   margin:0 10px 0 0px;
 }
 
+.car-condition{
+  padding: 40px 0px;
+}
+
+.btn-submit{
+  margin:15px 10px;
+}
+
 </style>  
 
  
@@ -68,7 +76,7 @@ form{
           <label>Odometer:</label>  
           <input type="text" class="form-control" ng-model="selectedOdometer.value">         
           </div>
-         <div class="col-xs-2 list-desc-info">info</div>
+         <div class="col-xs-2 list-desc-info">Located on driver side behind the wheel dashboard.</div>
          
         <div class="col-xs-3">
         <label>Vin (Vechicle Id Number):</label>  
@@ -81,13 +89,13 @@ form{
        </div>
 
 
-        <div class="col-xs-12"> 
+        <div class="col-xs-12 car-condition"> 
          <div class="col-xs-4">
            <label>Car Condition:</label>
            <select class="form-control" ng-model="selectedCondition.value" ng-options="autoCondition as autoCondition for autoCondition in autoConditions"></select>
          </div>
          <div class="col-xs-7 list-desc-info">
-          <p>info</p>
+          <p>New:<br>Excellent:<br>Great:<br>Fair:<br>Salvage:</p>
         </div>
        </div>
 
@@ -97,7 +105,7 @@ form{
           <label>Car Title:</label>  
           <select class="form-control" ng-model="selectedTitle.value" ng-options="autoTitle as autoTitle for autoTitle in autoTitles"></select>
          </div>
-         <div class="col-xs-7 list-desc-info">info</div>
+         <div class="col-xs-7 list-desc-info">A certificate of title for a vehicle (also known as a car title or pink slip; or pinks in the plural). If Vechile withhanded major collusion it will be decleared <strong>Salvage</strong> by DMW otherwise it is <strong>Clean</strong> </div>
        </div>
      </div><!-- end of group -->
    </div>
@@ -112,13 +120,13 @@ form{
              <select class="form-control" ng-model="selectedEngine.value" ng-options="autoEngine as autoEngine for autoEngine in autoEngines"></select>
            </div>
            <div class="col-xs-3 list-desc-info">
-            <p>info</p>
+            <p>Based on your auto engine size can vary from 3 cylinder to 12 cylinder. You can find info in your manual.</p>
           </div>
           <div class="col-xs-2">
             <label>Car Drive Type:</label>  
             <select class="form-control" ng-model="selectedTitle.value" ng-options="autoTitle as autoTitle for autoTitle in autoTitles"></select>
           </div>
-          <div class="col-xs-4 list-desc-info">info</div>        
+          <div class="col-xs-4 list-desc-info">There two main drive types: Manual and Automatic.</div>        
       </div>
 
       <div class="col-xs-12"> 
@@ -126,14 +134,14 @@ form{
           <label>Car Transmission:</label>  
           <select class="form-control" ng-model="selectedTransmission.transmission" ng-options="autoTransmission as autoTransmission.transmission for autoTransmission in autoTransmissions"></select>
         </div>
-        <div class="col-xs-3 list-desc-info">info</div>
+        <div class="col-xs-3 list-desc-info">Based on your auto engine size can vary from 3 cylinder to 12 cylinder. You can find info in your manual.</div>
 
         <div class="col-xs-2">
             <label ng-show="showTransAuto()">Transmission Speed:</label>  
             <select class="form-control" ng-show="showTransAuto()" ng-model="selectedTransmission.speed" ng-options="autoTransmission as autoTransmission.speed for autoTransmission in autoTransmissions"></select>
         </div>
 
-        <div class="col-xs-4 list-desc-info" ng-show="showTransAuto()">info</div>
+        <div class="col-xs-4 list-desc-info" ng-show="showTransAuto()">Typical Speed is 6</div>
 
       </div> 
 
@@ -150,7 +158,7 @@ form{
           <label>Car Miles Per Gallon(MPG):</label>  
           <select class="form-control" ng-model="selectedMpg.value" ng-options="autoMpg as autoMpg for autoMpg in autoMpgs"></select>
         </div>
-        <div class="col-xs-3 list-desc-info">info</div>          
+        <div class="col-xs-3 list-desc-info">Gas mile per gallon</div>          
       </div> <!-- end of section -->
 
       <div class="col-xs-12">
@@ -166,7 +174,7 @@ form{
           <label>Car Style:</label>  
           <select class="form-control" ng-model="selectedStyle.value" ng-options="autoStyle as autoStyle for autoStyle in autoStyles"></select>
         </div>
-        <div class="col-xs-4 list-desc-info">info</div>          
+        <div class="col-xs-4 list-desc-info">Type of style such as ...</div>          
       </div> <!-- end of section -->  
 
       <!-- insert color info here -->
@@ -208,18 +216,18 @@ form{
       <div class="col-xs-12">    
           <div class="col-xs-6">  
             <label for="zip">City</label>
-            <input type="text" class="form-control" placeholder="City" ng-value="zipResults.results[0].address_components[1].long_name">
+            <input type="text" class="form-control" placeholder="City" ng-value="geocodingResults.results[0].address_components[1].long_name">
           </div>
 
           <div class="col-xs-6">
             <label for="zip">State</label>
-            <input type="text" class="form-control" placeholder="State" ng-value="zipResults.results[0].address_components[3].long_name">    
+            <input type="text" class="form-control" placeholder="State" ng-value="geocodingResults.results[0].address_components[2].long_name">    
           </div>
       </div>
         
     </div>
     </div>
-        <button ng-click="addListing()">Submit</button>
+        <button ng-click="addListing()" class="btn-lg btn-primary btn-submit">Submit</button>
       </form>
 
 

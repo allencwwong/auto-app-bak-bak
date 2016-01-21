@@ -1,5 +1,21 @@
 #search{
 
+.fade{
+    -webkit-transition: opacity 1s !important; /* For Safari 3.1 to 6.0 */
+    transition: opacity 1s !important;
+    opacity: 1 !important;
+}
+
+.fade-out{
+    -webkit-transition: opacity 1s !important; /* For Safari 3.1 to 6.0 */
+    transition: opacity 1s !important;
+    opacity: 0 !important;
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #08578C;
+}
 
   #main-panel{
     width:100%;
@@ -69,7 +85,8 @@
     background: #eee;
     float:right;  
     margin:0px;
-    padding:20px;  
+    padding:20px;
+    
   }
 
   .desc-panel-two{
@@ -102,25 +119,64 @@
     list-style: none;
     height: 100%;
   }
+
+  .searchMain img{
+    width:100px;
+    margin:8px 11px;
+    vertical-align: middle;
+  }
+
+  .searchMain p{
+    text-align: center;
+  }
   
   .searchMain li{
     float:left;
-    width: 150px;
-    height: 180px;
-    margin:5px 10px 5px 5px;
+    width: 125px;
+    height: 150px;
+    margin:10px 10px 15px 20px;
+    background:#ccc;
+    border:1px solid #333;
+    border-radius:5px;
+  }
+
+  .hover{
+    background:#60B9F5;
+    height:100%;
+    box-shadow:1px 1px 18px #60B9F5;
+  }
+
+  .hover a{
+    color:white;
+  }
+
+  .selected{
+    background:#60B9F5;
+    height:100%;    
   }
 
   .searchModel li{
     width: 100px;
-    height: 40px;
+    height: 50px;
     border:1px solid #333;
-    padding:8px;
+    padding:10px;
     float: left;
+    font-size:18px
+  }
+
+  .model-panel-locked{
+    width:100%;
+    text-align: center;
+    vertical-align: center;
+  }
+
+  .model-panel-locked p{
+    padding:20px 0px;
   }
 
 
   .searchContent-year{
-    margin:0px;
+    margin:15px;
     padding:0px;
     float:left;
     list-style: none;
@@ -128,10 +184,14 @@
 
   .searchContent-year li{
     float:left;
-    width:50px;
-    margin:3px;
-    padding:0px;
-    font-size:22px;
+    width:70px;
+    height: 45px;
+    margin:7px;
+    padding:5px 9px;
+    font-size:18px;
+    border:1px solid #333;
+    border-radius: 5px;
+    background: #ccc;
   }
 
   .autoMakeSet{
@@ -158,6 +218,25 @@
 
   .description-text{
     font-size:18px;
+  }
+
+  .btn-search{
+    padding:3px 20px;
+    margin: 0 0 10px 15px;
+  }
+  
+  .year-panel-h1{
+    font-size: 24px !important;
+  }
+
+  .year-panel-locked{
+    width:100%;
+    text-align: center;
+    vertical-align: center;
+  }
+
+    .year-panel-locked p{
+    padding:20px 0px;
   }
 
 } //end of css 

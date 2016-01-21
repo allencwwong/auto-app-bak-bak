@@ -1,12 +1,8 @@
-  <% if current_user  %>
+  <div class="container-fluid" ng-controller="listingNewCtrl" ng-init="setup()" >
+     
+      <div class="row">
+        <div id="div-user" data-item-current="<%= current_user.id %>"></div>
+        <div ng-include src="'/_form_listing.html.erb'"></div>
 
-
-
-
-
-  <!-- if not a user redirect to home page -->
-  <% else %>
-  <script type="text/javascript">
-    window.location.href="/"  
-  </script>
-  <% end %>
+    </div>  
+  </div>

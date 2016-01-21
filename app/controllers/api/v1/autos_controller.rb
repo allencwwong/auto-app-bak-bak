@@ -35,7 +35,9 @@ class Api::V1::AutosController < ApplicationController
     package: params[:packages],
     doors: params[:doors],
     features: params[:features],
-    option: params[:options]
+    option: params[:options],
+    lat: params[:lat],
+    lng: params[:lng]
     )
 
     if @listing.save
