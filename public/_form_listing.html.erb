@@ -56,7 +56,9 @@ form{
           <label for="selectModel">Select a Model:</label>
           <select class="form-control" ng-disabled="modelSelection" ng-model="selectedModel">
             <option ng-show="modelSelection">Please Select a Make</option>
-          <option></option>
+          <option>MDX</option>
+          <option>RDX</option>
+          <option>TSX</option>
           </select>
         </div>
         
@@ -98,7 +100,7 @@ form{
            <select class="form-control" ng-model="selectedCondition.value" ng-options="autoCondition as autoCondition for autoCondition in autoConditions"></select>
          </div>
          <div class="col-xs-7 list-desc-info">
-          <p>New:<br>Excellent:<br>Great:<br>Fair:<br>Salvage:</p>
+          <p>New:  Brand New unused condition<br>Excellent: Low milage with no dent or scratches<br>Great:<br>Fair:<br>Salvage:</p>
         </div>
        </div>
 
@@ -154,7 +156,7 @@ form{
            <select class="form-control" ng-model="selectedFuel.value" ng-options="autoFuel as autoFuel for autoFuel in autoFuels"></select>
          </div>
          <div class="col-xs-3 list-desc-info">
-          <p>info</p>
+          <p>Type of Fuel your car uses</p>
         </div>
 
         <div class="col-xs-3">
@@ -170,7 +172,7 @@ form{
            <select class="form-control" ng-model="selectedDoors.value" ng-options="autoDoor as autoDoor for autoDoor in autoDoors"></select>
          </div>
          <div class="col-xs-2 list-desc-info">
-          <p>info</p>
+          <p>Number of doors your car have</p>
         </div>
 
         <div class="col-xs-3">
