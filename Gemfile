@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'pg', group: :production
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'thematic'
@@ -36,12 +37,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-group :production do
-gem 'pg'
-end
 
 gem 'rails_12factor', group: :production
 
