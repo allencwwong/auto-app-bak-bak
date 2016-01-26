@@ -15,7 +15,9 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+config.serve_static_assets = true
 config.assets.initialize_on_precompile = false
+
 
 module AutoApp
   class Application < Rails::Application
