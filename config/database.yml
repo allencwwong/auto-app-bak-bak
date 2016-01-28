@@ -25,6 +25,8 @@ development:
 production:
   database: auto-app-production
   adapter: postgresql
+  username: car-listing-app
+  password: <%= ENV['CAR-LISTING-APP_DATABASE_PASSWORD'] %>  
   encoding: unicode
   pool: 5  
 
