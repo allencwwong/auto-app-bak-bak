@@ -16,7 +16,7 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 
-config.assets.initialize_on_precompile = false
+
 
 
 module AutoApp
